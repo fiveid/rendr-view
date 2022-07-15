@@ -1,0 +1,63 @@
+{
+  "name": "@rendr-view/demo-react-app",
+  "version": "0.1.1-alpha.1",
+  "private": true,
+  "dependencies": {
+    "@ekino/rendr-core": "^1.0.0-alpha.0",
+    "@ekino/rendr-loader": "^1.0.0-alpha.5",
+    "@rendr-view/card": "^0.0.1-alpha.1",
+    "@rendr-view/rendr-block": "^0.0.1-alpha.1",
+    "@rendr-view/rendr-router": "^0.0.1-alpha.0",
+    "@rendr-view/stagger": "^0.0.1-alpha.1",
+    "@rendr-view/text": "^0.0.1-alpha.1",
+    "@rendr-view/use-fill-available": "^0.0.1-alpha.1",
+    "@rendr-view/with-clxn": "^0.0.1-alpha.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "buffer": "^6.0.3",
+    "clsx": "^1.1.1",
+    "react-app-rewired": "^2.2.1",
+    "react-icons": "^4.3.1",
+    "react-scripts": "5.0.1",
+    "react-scroll-parallax": "^3.2.0",
+    "stream-browserify": "^3.0.0",
+    "typescript": "^4.4.2",
+    "util": "^0.12.4",
+    "web-vitals": "^2.1.0"
+  },
+  "scripts": {
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
+    "eject": "react-app-rewired eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.13",
+    "postcss-import": "^14.1.0",
+    "tailwindcss": "^3.0.24"
+  }
+}

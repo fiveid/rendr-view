@@ -1,0 +1,162 @@
+import { Canvas, Meta, Story, ArgsTable } from "@storybook/addon-docs";
+import { action } from "@storybook/addon-actions";
+import GTMContext, { GTMHandler } from "@rendr-view/gtm-context";
+import { Button, Typography } from "./shared/components";
+
+<Meta title="Context/GTMContext" component={GTMHandler} />
+
+# GTM Context
+
+`GTMContext` should sit at the top level of your application. It exposes a `push` function to trigger GTM events.
+
+<Canvas>
+  <Story name="Overview">
+    <GTMHandler mockPushHandler={action("push")} event={{ page: "storybook" }}>
+      <GTMContext.Consumer>
+        {({ push }) => (
+          <div>
+            <Typography.Paragraph>
+              Clicking this button will log a mock GTM event in the actions tab
+            </Typography.Paragraph>
+            <Button
+              onClick={() => {
+                push({
+                  event: "click",
+                  category: "cta",
+                  label: "Click me"
+                });
+              }}
+            >
+              Click me
+            </Button>
+          </div>
+        )}
+      </GTMContext.Consumer>
+    </GTMHandler>
+  </Story>
+</Canvas>
+
+## Implementations
+
+### captureClicks
+
+You can optionally set the `captureClicks` prop of `GTMHandler` to `true` to avoid having to manually trigger `push` events. This will cause `GTMHandler` to listen to all click events in the application and trigger a push if the clicked element has the expected data attributes.
+
+<Canvas>
+  <Story name="Capture clicks">
+    <GTMHandler
+      captureClicks
+      mockPushHandler={action("push")}
+      event={{ page: "storybook" }}
+    >
+      <div>
+        <Typography.Paragraph>
+          Clicking this button will log a mock GTM event in the actions tab
+        </Typography.Paragraph>
+        <Button
+          data-event-type="click"
+          data-event-category="cta"
+          data-event-label="Click me"
+        >
+          Click me
+        </Button>
+      </div>
+    </GTMHandler>
+  </Story>
+</Canvas>
+
+### Default event values
+
+You can pass default event values to `GTMHandler` in the `event` prop. The properties you provide will be used if the target event does not define them itself.
+
+It is possible to nest `GTMHandler` components to supply default event values to specific sections of the app. In such cases, nested GTMHandler's will inherit the default values of parent GTMHandlers.
+
+In the example below, the root GTMHandler has `page: storybook` as a default event property. Clicking the first button will log an event with that value.
+
+The second button is wrapped in its own GTMHandler, which has a default event with `context: content-section`. Clicking the second button will log an event with both `page: storybook` and `context: content-section`, as well as the properties assigned to the button.
+
+If the parent GTMHandler has `mockPushHandler` defined, the child GTMHandler will also inherit this.
+
+<Canvas>
+  <Story name="Default event values">
+    <GTMHandler
+      captureClicks
+      mockPushHandler={action("push")}
+      event={{ page: "storybook" }}
+    >
+      <div>
+        <Typography.Paragraph>
+          Clicking this button will log a mock GTM event with `page:
+          "storybook"`
+        </Typography.Paragraph>
+        <Button
+          data-event-type="click"
+          data-event-category="cta"
+          data-event-label="Click me"
+        >
+          Click me
+        </Button>
+      </div>
+      <div className="mt-12">
+        <Typography.Subheading>Content Section</Typography.Subheading>
+        <GTMHandler captureClicks event={{ context: "content-section" }}>
+          <Typography.Paragraph>
+            Clicking this button will log a mock GTM event with `page:
+            "storybook"` AND `context: "content-section"`
+          </Typography.Paragraph>
+          <Button
+            data-event-type="click"
+            data-event-category="cta"
+            data-event-label="Click me"
+          >
+            Click me
+          </Button>
+        </GTMHandler>
+      </div>
+    </GTMHandler>
+  </Story>
+</Canvas>
+
+### Disable event in specific instances
+
+You may need to disable GTM on a specific element when it's used in a certain instancce, but for convenience have added the data attributes in a generic way. You can do this using the `data-event-disable` attribute.
+
+<Canvas>
+  <Story name="Disable event">
+    <GTMHandler
+      captureClicks
+      mockPushHandler={action("push")}
+      event={{ page: "storybook" }}
+    >
+      <div>
+        <Typography.Paragraph>
+          Clicking this button will log a mock GTM event in the actions tab
+        </Typography.Paragraph>
+        <Button
+          data-event-type="click"
+          data-event-category="cta"
+          data-event-label="Click me"
+        >
+          Click me
+        </Button>
+      </div>
+      <div className="mt-12">
+        <Typography.Paragraph>
+          Clicking this button will not
+        </Typography.Paragraph>
+        <Button
+          data-event-type="click"
+          data-event-category="cta"
+          data-event-label="Click me"
+          data-event-disable
+        >
+          Click me
+        </Button>
+      </div>
+    </GTMHandler>
+  </Story>
+</Canvas>
+
+## Props
+
+<ArgsTable of={GTMHandler} />

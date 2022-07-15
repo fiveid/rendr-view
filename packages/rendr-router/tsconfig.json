@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/lib",
+    "traceResolution": false,
+    "paths": {
+      "stream": ["./node_modules/stream-browserify"],
+      "react": ["./node_modules/react"]
+    }
+  },
+  "include": ["./src"]
+}

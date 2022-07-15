@@ -1,0 +1,23 @@
+{
+  "name": "@rendr-view/rendr-block",
+  "version": "0.0.1-alpha.1",
+  "main": "dist/lib/index.js",
+  "typing": "dist/lib/index.d.ts",
+  "module": "dist/lib-esm/index.js",
+  "jsnext:main": "dist/lib-esm/index.js",
+  "license": "MIT",
+  "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc && tsc -m es6 --outDir dist/lib-esm && tsc -m amd --outFile dist/_bundles/rendr-block.js"
+  },
+  "dependencies": {
+    "@ekino/rendr-core": "^1.0.0-alpha.5",
+    "@ekino/rendr-template-react": "^1.0.0-alpha.5",
+    "@rendr-view/with-clxn": "^0.0.1-alpha.1",
+    "clsx": "^1.1.1"
+  },
+  "gitHead": "99d7e4931f812bda056350fe9d317c3baded3fe5"
+}

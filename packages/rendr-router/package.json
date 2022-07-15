@@ -1,0 +1,27 @@
+{
+  "name": "@rendr-view/rendr-router",
+  "version": "0.0.1-alpha.0",
+  "main": "dist/lib/index.js",
+  "typing": "dist/lib/index.d.ts",
+  "module": "dist/lib-esm/index.js",
+  "jsnext:main": "dist/lib-esm/index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "tsc && tsc -m es6 --outDir dist/lib-esm && tsc -m amd --outFile dist/_bundles/rendr-router.js"
+  },
+  "dependencies": {
+    "@ekino/rendr-core": "^1.0.0-alpha.0",
+    "@ekino/rendr-loader": "^1.0.0-alpha.5",
+    "@ekino/rendr-template-react": "^1.0.0-alpha.8",
+    "history": "^5.0.0",
+    "stream-browserify": "3.0.0"
+  },
+  "devDependencies": {
+    "@types/history": "^4.7.7"
+  },
+  "peerDependencies": {
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}

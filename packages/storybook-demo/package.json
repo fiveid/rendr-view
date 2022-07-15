@@ -1,0 +1,43 @@
+{
+  "name": "@rendr-view/storybook-demo",
+  "version": "0.0.1-alpha.1",
+  "dependencies": {
+    "@rendr-view/btn": "^0.0.1-alpha.1",
+    "@rendr-view/card": "^0.0.1-alpha.1",
+    "@rendr-view/gtm-context": "^0.0.1-alpha.1",
+    "@rendr-view/portal": "^0.0.1-alpha.1",
+    "@rendr-view/rendr-block": "^0.0.1-alpha.1",
+    "@rendr-view/rendr-router": "^0.0.1-alpha.0",
+    "@rendr-view/stagger": "^0.0.1-alpha.1",
+    "@rendr-view/text": "^0.0.1-alpha.1",
+    "@rendr-view/use-fill-available": "^0.0.1-alpha.1",
+    "@rendr-view/use-scrollsnap-controls": "^0.0.1-alpha.1",
+    "@rendr-view/with-clxn": "^0.0.1-alpha.1",
+    "@rendr-view/with-preset": "^0.0.1-alpha.1",
+    "clsx": "^1.1.1",
+    "react-icons": "^4.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@storybook/addon-actions": "^6.4.0",
+    "@storybook/addon-essentials": "^6.4.0",
+    "@storybook/addon-interactions": "^6.4.0",
+    "@storybook/addon-links": "^6.4.0",
+    "@storybook/addon-postcss": "2.0.0",
+    "@storybook/builder-webpack5": "^6.4.0",
+    "@storybook/manager-webpack5": "^6.4.0",
+    "@storybook/react": "^6.4.0",
+    "@storybook/testing-library": "0.0.9",
+    "autoprefixer": "^10.4.2",
+    "babel-loader": "^8.2.3",
+    "postcss": "^8.4.6",
+    "postcss-import": "^14.0.2",
+    "tailwind-bootstrap-grid": "^5.0.0",
+    "tailwindcss": "^3.0.23"
+  },
+  "scripts": {
+    "storybook": "start-storybook -s ./public",
+    "build-storybook": "build-storybook -s ./public"
+  },
+  "private": true
+}
