@@ -1,0 +1,154 @@
+import { Story, ArgsTable, Canvas } from "@storybook/addon-docs";
+import { action } from "@storybook/addon-actions";
+import Card from "@rendr-view/card";
+import * as stories from "./Card.stories.tsx";
+
+export const Template = args => (
+  <Card
+    title="Card title"
+    subtitle="In duis laborum veniam"
+    text="Veniam cupidatat nostrud amet culpa cillum cillum fugiat. Adipisicing id nostrud Lorem dolor occaecat."
+    categories={[
+      { label: "Category 1", link: "#" },
+      { label: "Category 2", link: "#" }
+    ]}
+    buttons={[{ onClick: action("clicked"), children: "Click me" }]}
+    image={{ alt: "", src: "https://via.placeholder.com/500/000000/808080" }}
+    {...args}
+  />
+);
+
+<Meta title="Card" component={Card} />
+
+# Card
+
+The `Card` component provides a simple HTML structure, that can be reused and customised for a variety of uses. Out of the box, this structure supports the following content (in this order):
+
+- image
+- categories
+- title
+- subtitle
+- paragraph
+- buttons
+
+All content is optional.
+
+This structure can be used to represent many different components with only styling changes. For slightly more complex components, this structure can be modified to include custom components.
+
+Unstyled, and with all content, the component looks like this:
+
+<Canvas>
+  <Story name="Default">{Template.bind({})}</Story>
+</Canvas>
+
+Individual elements can be styled with utility classes, using the `clx` prop:
+
+<Canvas>
+  <Story
+    name="Styled"
+    args={{
+      clx: {
+        card: "relative max-w-sm border border-gray-100 p-4 shadow overflow-hidden",
+        title: "block text-3xl font-bold mb-2",
+        subtitle: "block font-semibold text-orange-600",
+        paragraph: "block my-2 text-sm leading-wide text-gray-500",
+        categories: "text-xs mb-4",
+        category: "inline-block bg-orange-100 px-2 py-1 mr-2 last:mr-0",
+        buttons: "mt-6 mb-2 block",
+        button:
+          "cursor-pointer bg-orange-500 hover:bg-orange-600 border border-orange-600 text-white font-bold py-2 px-4 rounded",
+        imageWrapper: "block aspect-video overflow-hidden mb-4",
+        image: "w-full h-full object-cover object-center"
+      }
+    }}
+  >
+    {Template.bind({})}
+  </Story>
+</Canvas>
+
+## Props
+
+```ts
+export interface Props {
+  className?: string;
+  title?: string;
+  text?: string;
+  image?: HTMLImageProps;
+  structure?: CardStructureType;
+  categories?: CardCategory[];
+  subtitle?: string;
+  buttons?: CardButtonProps[];
+  clx?: ClassNamesList;
+}
+```
+
+## Customising styles
+
+Utility classes can be applied to every element of the `Card` using the `clx` prop. The following properties are supported:
+
+```ts
+export type ClassNamesList = {
+  buttons?: string;
+  button?: string;
+  card?: string;
+  content?: string;
+  categories?: string;
+  category?: string;
+  figure?: string;
+  image?: string;
+  imageWrapper?: string;
+  paragraph?: string;
+  subtitle?: string;
+  title?: string;
+};
+```
+
+There are no default styles.
+
+## Customising content
+
+The `structure` prop accepts an array of React cmponents, each of which are passed the `Card` props. You can mix default sections with completely custom components.
+
+Default sections can be found on the exported variable: `cardSectionsList`.
+
+Here are some simple examples:
+
+<Canvas>
+  <Story story={stories.CustomStructure} />
+</Canvas>
+
+<Canvas>
+  <Story story={stories.ReducedStructure} />
+</Canvas>
+
+### Modifying default sections
+
+In some cases, the default sections may not be sufficient. For example, you may want your card title to be a `h2` instead of a `span`. Or you may want to use `Next/Image` instead of `img`. While you can create your own custom components, you could also simple extend the default sections:
+
+```tsx
+const CustomTitle = (props: CardSectionProps) => (
+  <CardTitle {...props} CustomComp="h2" />
+);
+const CustomImage = (props: CardSectionProps) => (
+  <CardImage
+    {...props}
+    CustomComp={imgProps => <ThirdPartyImageComponent {...imgProps} />}
+  />
+);
+```
+
+`CustomComp` could be a string of a supported HTML tag, or a React component.
+
+### Grouping sections
+
+For finer control over the layout of a `Card` you can wrap sections in a `div` element with its own custom className using `renderCardSectionGroup`:
+
+```ts
+const customStructure = [
+  renderCardSectionGroup("col-8", [cardSectionsList.image]),
+  renderCardSectionGroup("col-4", [
+    cardSectionsList.title,
+    cardSectionsList.paragraph
+  ])
+];
+```

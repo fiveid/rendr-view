@@ -35,7 +35,7 @@ export const Example = () => {
       <Typography.Paragraph>
         Click button to open modal in Portal
       </Typography.Paragraph>
-      <Button onClick={() => setShow(true)} />
+      <Button onClick={() => setShow(true)}>Click me</Button>
       <Portal>
         <ModalContent isVisible={show} onClose={() => setShow(false)} />
       </Portal>

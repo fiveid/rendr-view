@@ -1,5 +1,5 @@
 {
-  "name": "@rendr-view/use-parallax-container",
+  "name": "@rendr-view/use-outside-alerter",
   "version": "0.0.1-alpha.1",
   "main": "dist/lib/index.js",
   "typing": "dist/lib/index.d.ts",
@@ -11,7 +11,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc && tsc -m es6 --outDir dist/lib-esm && tsc -m amd --outFile dist/_bundles/use-parallax-container.js"
+    "build": "tsc && tsc -m es6 --outDir dist/lib-esm && tsc -m amd --outFile dist/_bundles/use-outside-alerter.js"
   },
   "dependencies": {
     "lodash.debounce": "^4.0.8"

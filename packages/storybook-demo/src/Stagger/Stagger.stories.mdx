@@ -1,0 +1,60 @@
+import { Story, ArgsTable, Canvas } from "@storybook/addon-docs";
+import { action } from "@storybook/addon-actions";
+import Stagger from "@rendr-view/stagger";
+import * as stories from "./Stagger.stories.tsx";
+
+<Meta title="Stagger" component={Stagger} />
+
+# Stagger
+
+`Stagger` is a utility component to help manage sequencing of transitions. It arose out of a need to add an element to the DOM and then apply CSS transitions (and vice versa).
+
+<Canvas>
+  <Story story={stories.Example} />
+</Canvas>
+
+This example shows an element entering the view in three stages, but exiting in two. Each step has an `in` and an `out` duration.
+
+## How it works
+
+The `Stagger` sequence will being when the `start` prop is set to `true`. This will then iterate through each step definition in the `step` props. Each step can have an `in` delay, an `out` delay, and an `id`.
+
+The children of `Stagger` is passed a render prop with information about the status of the step sequence.
+
+- `started`: is a boolean that is true if the sequence has started and false if it has ended.
+- `ready(stepId)`: is a function that accepts either the step index (e.g. 0, 1, 2, etc.), or the `id` given to the step. It will return true if the step is "active"
+- `unready(stepId)`: this works in a similar way to `ready` but will return true if the step is inactive.
+
+## Props
+
+```tsx
+export type StepObject = {
+  id?: string;
+  in?: number;
+  out?: number;
+};
+
+export type StepType = number | StepObject;
+
+export type StepProp = StepType | StepType[] | undefined;
+
+export type StepId = number | string;
+
+export interface Props {
+  start?: boolean;
+  step?: StepProp;
+  children(state: {
+    started: boolean;
+    ready: (id: StepId) => boolean;
+    unready: (id: StepId) => boolean;
+  }): JSX.Element;
+}
+```
+
+## Examples
+
+This is a simpler example of how Stagger could be used to render an element in and out of the DOM, while maintaining a CSS transition (e.g. transition wipe):
+
+<Canvas>
+  <Story story={stories.Transition} />
+</Canvas>

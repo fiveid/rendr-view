@@ -28,10 +28,12 @@
     "clean": "rm -rf node_modules packages/*/node_modules packages/*/dist",
     "setup": "yarn install && lerna bootstrap && yarn build",
     "build": "lerna run build",
-    "test": "lerna run test",
+    "test": "lerna run --stream --concurrency=1 test",
+    "lint": "eslint .",
     "format": "prettier --check 'packages/**/*.ts(x)'",
     "format:fix": "prettier --write 'packages/**/*.ts(x)'",
     "storybook": "lerna run storybook --scope=@rendr-view/storybook-demo --stream",
+    "storybook:build": "lerna run build-storybook --scope=@rendr-view/storybook-demo --stream",
     "demo-react-app": "lerna run start --scope=@rendr-view/demo-react-app --stream"
   }
 }

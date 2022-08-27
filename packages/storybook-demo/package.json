@@ -37,7 +37,7 @@
   },
   "scripts": {
     "storybook": "start-storybook -s ./public",
-    "build-storybook": "build-storybook -s ./public"
+    "build-storybook": "build-storybook"
   },
   "private": true
 }
