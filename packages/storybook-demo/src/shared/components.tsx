@@ -13,9 +13,7 @@ export const Button = (props: ButtonProps) => (
       icon: "ml-2"
     }}
     {...props}
-  >
-    Button
-  </Btn>
+  />
 );
 
 export const Typography = generateTypography({

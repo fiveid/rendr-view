@@ -8,13 +8,22 @@ export default {
 
 const TypeSet = generateTypography(
   {
-    Paragraph: { tagName: "p", className: "text-sm leading-relaxed mb-4" },
-    Title: { tagName: "h1", className: "text-6xl font-bold mb-12" },
+    Paragraph: {
+      tagName: "p",
+      className: "text-sm leading-relaxed mb-4"
+    },
+    Title: {
+      tagName: "h1",
+      className: "text-6xl font-bold mb-12 uppercase tracking-wider"
+    },
     Heading: { tagName: "h2", className: "text-3xl font-bold mb-6" },
-    Subheading: { tagName: "h3", className: "text-lg font-bold mb-4" },
-    Intro: { tagName: "p", className: "text-lg mb-4" }
+    Subheading: {
+      tagName: "h3",
+      className: "text-lg font-bold mb-4 uppercase max-w-md"
+    },
+    Intro: { tagName: "p", className: "text-lg mb-4 max-w-lg" }
   },
-  "font-serif"
+  "font-serif text-slate-900"
 );
 
 export const BasicText = () => <Text>This is some text</Text>;

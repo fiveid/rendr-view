@@ -9,11 +9,6 @@ import Card, {
 import { PropsWithClxnLoader } from "@rendr-view/with-clxn";
 import cardSectionsList from "@rendr-view/card/dist/lib/card-sections";
 
-export default {
-  title: "Card",
-  component: Card
-};
-
 type CardProps = PropsWithClxnLoader<Props, ClassNamesList>;
 
 const CardContent = (props: CardProps) => (
@@ -63,9 +58,9 @@ export const ClassNames = () => <CardStyled />;
 export const CustomStructure = () => (
   <CardStyled
     structure={[
-      cardSectionsList.image,
       cardSectionsList.title,
       cardSectionsList.paragraph,
+      cardSectionsList.image,
       CustomButtons,
       Tag
     ]}

@@ -84,7 +84,7 @@ If the parent GTMHandler has `mockPushHandler` defined, the child GTMHandler wil
       mockPushHandler={action("push")}
       event={{ page: "storybook" }}
     >
-      <div>
+      <div className="mb-12">
         <Typography.Paragraph>
           Clicking this button will log a mock GTM event with `page:
           "storybook"`
@@ -97,7 +97,7 @@ If the parent GTMHandler has `mockPushHandler` defined, the child GTMHandler wil
           Click me
         </Button>
       </div>
-      <div className="mt-12">
+      <div>
         <Typography.Subheading>Content Section</Typography.Subheading>
         <GTMHandler captureClicks event={{ context: "content-section" }}>
           <Typography.Paragraph>
@@ -128,7 +128,7 @@ You may need to disable GTM on a specific element when it's used in a certain in
       mockPushHandler={action("push")}
       event={{ page: "storybook" }}
     >
-      <div>
+      <div className="mb-12">
         <Typography.Paragraph>
           Clicking this button will log a mock GTM event in the actions tab
         </Typography.Paragraph>
@@ -140,7 +140,7 @@ You may need to disable GTM on a specific element when it's used in a certain in
           Click me
         </Button>
       </div>
-      <div className="mt-12">
+      <div>
         <Typography.Paragraph>
           Clicking this button will not
         </Typography.Paragraph>
@@ -159,4 +159,14 @@ You may need to disable GTM on a specific element when it's used in a certain in
 
 ## Props
 
-<ArgsTable of={GTMHandler} />
+```tsx
+export interface Props {
+  containerClassName?: string;
+  trackingId?: string;
+  captureClicks?: boolean;
+  mockPushHandler?: GTMPushFn;
+  children: React.ReactNode;
+  event?: GTMEventDataset;
+  transformer?: GTMEventTransformer;
+}
+```

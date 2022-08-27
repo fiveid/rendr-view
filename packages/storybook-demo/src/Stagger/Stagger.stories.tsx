@@ -1,28 +1,9 @@
 import React from "react";
 import Stagger from "@rendr-view/stagger";
 import clsx from "clsx";
+import { Button } from "../shared/components";
 
-export default {
-  title: "Stagger",
-  component: Stagger
-};
-
-const Button = ({
-  onClick,
-  label = "Toggle"
-}: {
-  onClick: () => void;
-  label?: string;
-}) => (
-  <button
-    className="font-bold px-6 py-2 bg-orange-300 rounded-sm border border-orange-400"
-    onClick={onClick}
-  >
-    {label}
-  </button>
-);
-
-export const Test = () => {
+export const Example = () => {
   const [isActive, setIsActive] = React.useState(false);
   return (
     <div className="overflow-hidden">
@@ -74,7 +55,7 @@ export const Test = () => {
           )}
         </Stagger>
       </div>
-      <Button onClick={() => setIsActive(!isActive)} />
+      <Button onClick={() => setIsActive(!isActive)}>Toggle</Button>
     </div>
   );
 };
@@ -82,22 +63,24 @@ export const Test = () => {
 export const Transition = () => {
   const [isActive, setIsActive] = React.useState(false);
   return (
-    <div className="overflow-hidden w-screen h-screen bg-slate-900">
-      <Stagger start={isActive} step={{ in: 0, out: 1000 }}>
-        {stagger => (
-          <div
-            className={clsx(
-              "w-screen h-screen flex items-center justify-center bg-orange-300 text-black font-heading text-lg uppercase fixed top-0 left-0 transform transition duration-500 ease-in-out",
-              {
-                "translate-y-full pointer-events-none opacity-0":
-                  !stagger.started
-              }
-            )}
-          />
-        )}
+    <div className="overflow-hidden w-full h-screen bg-slate-900 relative">
+      <Stagger start={isActive} step={[{ in: 10, out: 500 }]}>
+        {stagger =>
+          stagger.started ? (
+            <div
+              className={clsx(
+                "w-full h-screen flex items-center justify-center bg-orange-300 text-black font-heading text-lg uppercase absolute top-0 left-0 transform transition duration-500 ease-in-out",
+                {
+                  "translate-y-full pointer-events-none opacity-0":
+                    !stagger.ready(0)
+                }
+              )}
+            />
+          ) : null
+        }
       </Stagger>
-      <div className="fixed top-0 left-0 z-10">
-        <Button onClick={() => setIsActive(!isActive)} />
+      <div className="absolute top-2 left-2 z-10">
+        <Button onClick={() => setIsActive(!isActive)}>Toggle</Button>
       </div>
     </div>
   );

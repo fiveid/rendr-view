@@ -9,3 +9,4 @@ node_modules
 packages/**/dist/**
 .cache
 yarn-error.log
+storybook-static
