@@ -14,11 +14,4 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-      - name: Install and Build 🔧
-        run: | # Install npm packages and build the Storybook files
-          yarn setup
-          yarn storybook:build
       - run: echo "🍏 This job's status is ${{ job.status }}."
