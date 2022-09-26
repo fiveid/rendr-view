@@ -2,7 +2,12 @@ import React from "react";
 import TagManager from "react-gtm-module";
 import GTMContext from "./gtm-context";
 import { gtmPush } from "./gtm-push";
-import { GTMEventDataset, GTMEventTransformer, GTMPushFn } from "./types";
+import {
+  GTMElementEventParser,
+  GTMEventDataset,
+  GTMEventTransformer,
+  GTMPushFn
+} from "./types";
 import {
   defaultTransformer,
   getElementWithGTMDataset,
@@ -17,6 +22,7 @@ export interface Props {
   children: React.ReactNode;
   event?: GTMEventDataset;
   transformer?: GTMEventTransformer;
+  elementEventParser?: GTMElementEventParser;
 }
 
 function GTMHandler(props: Props) {
@@ -36,8 +42,20 @@ function GTMHandler(props: Props) {
       TagManager.initialize({ gtmId: props.trackingId });
     }
     setInitialised(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function push(gtmEvent: GTMEventDataset) {
+    const eventWithDefaults = transformer(
+      Object.assign({}, gtmEvent, defaultEvent)
+    );
+
+    if (mockPushHandler) {
+      mockPushHandler(eventWithDefaults);
+      return;
+    }
+
+    gtmPush(eventWithDefaults);
+  }
 
   // If props.captureClicks is true, all clicks on the site will trigger the method below
   // the idea is to trigger or modify GTM events, if not set up in data layer
@@ -55,7 +73,7 @@ function GTMHandler(props: Props) {
           return;
         }
 
-        const gtmData: GTMEventDataset = {
+        let gtmData: GTMEventDataset = {
           event: eventElement.dataset.eventType,
           category: eventElement.dataset.eventCategory,
           label: eventElement.dataset.eventLabel,
@@ -65,22 +83,16 @@ function GTMHandler(props: Props) {
           data: eventElement.dataset.eventData
         };
 
+        if (props.elementEventParser) {
+          gtmData = {
+            ...gtmData,
+            ...props.elementEventParser(eventElement)
+          };
+        }
+
         push(gtmData);
       }
     }
-  }
-
-  function push(gtmEvent: GTMEventDataset) {
-    const eventWithDefaults = transformer(
-      Object.assign({}, gtmEvent, defaultEvent)
-    );
-
-    if (mockPushHandler) {
-      mockPushHandler(eventWithDefaults);
-      return;
-    }
-
-    gtmPush(eventWithDefaults);
   }
 
   const containerProps = props.captureClicks

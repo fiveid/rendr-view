@@ -14,6 +14,11 @@ export interface GTMEventDataset {
 }
 
 export type GTMPushFn = (event: Record<string, any>) => void;
+
 export type GTMEventTransformer = (
   event: GTMEventDataset
+) => Record<string, any>;
+
+export type GTMElementEventParser = (
+  element: HTMLElement
 ) => Record<string, any>;

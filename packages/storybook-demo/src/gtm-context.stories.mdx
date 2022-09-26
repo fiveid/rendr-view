@@ -157,6 +157,47 @@ You may need to disable GTM on a specific element when it's used in a certain in
   </Story>
 </Canvas>
 
+### Custom data attributes
+
+This library supports the following data attributes: 
+
+- `data-event-type`
+- `data-event-category`
+- `data-event-label`
+- `data-event-page`
+- `data-event-action`
+- `data-event-context`
+- `data-event-data`
+
+If you need to support additional attributes, you will need to use the `elementEventParser` prop. This is a function that takes a HTML element and returns an object that will be merged into the GTM event.
+
+<Canvas>
+  <Story name="Custom data attributes">
+    <GTMHandler
+      captureClicks
+      mockPushHandler={action("push")}
+      event={{ page: "storybook" }}
+      elementEventParser={(el) => ({ value: el.dataset.eventValue })}
+    >
+      <div className="mb-12">
+        <Typography.Paragraph>
+          Clicking this button will log a mock GTM event in the actions tab
+        </Typography.Paragraph>
+        <Button
+          data-event-type="click"
+          data-event-category="cta"
+          data-event-label="Click me"
+          data-event-value="10"
+        >
+          Click me
+        </Button>
+      </div>
+    </GTMHandler>
+  </Story>
+</Canvas>
+
+
+
 ## Props
 
 ```tsx
@@ -168,5 +209,6 @@ export interface Props {
   children: React.ReactNode;
   event?: GTMEventDataset;
   transformer?: GTMEventTransformer;
+  elementEventParser?: GTMElementEventParser;
 }
 ```
