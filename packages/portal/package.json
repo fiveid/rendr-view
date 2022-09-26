@@ -1,6 +1,6 @@
 {
   "name": "@rendr-view/portal",
-  "version": "0.0.1-alpha.1",
+  "version": "0.0.1-alpha.2",
   "main": "dist/lib/index.js",
   "typing": "dist/lib/index.d.ts",
   "module": "dist/lib-esm/index.js",
