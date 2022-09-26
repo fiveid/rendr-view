@@ -33,6 +33,8 @@ function GTMHandler(props: Props) {
   const mockPushHandler = props.mockPushHandler || parent.mockPushHandler;
   const transformer =
     props.transformer || parent.transformer || defaultTransformer;
+  const elementEventParser =
+    props.elementEventParser || parent.elementEventParser;
 
   React.useEffect(() => {
     if (props.trackingId) {
@@ -83,10 +85,10 @@ function GTMHandler(props: Props) {
           data: eventElement.dataset.eventData
         };
 
-        if (props.elementEventParser) {
+        if (elementEventParser) {
           gtmData = {
             ...gtmData,
-            ...props.elementEventParser(eventElement)
+            ...elementEventParser(eventElement)
           };
         }
 
@@ -106,7 +108,8 @@ function GTMHandler(props: Props) {
         event: defaultEvent,
         mockPushHandler,
         initialised,
-        transformer
+        transformer,
+        elementEventParser
       }}
     >
       <div
