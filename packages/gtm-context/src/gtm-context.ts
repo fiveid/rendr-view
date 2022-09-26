@@ -1,6 +1,11 @@
 import React from "react";
 import { gtmPush } from "./gtm-push";
-import { GTMEventDataset, GTMEventTransformer, GTMPushFn } from "./types";
+import {
+  GTMElementEventParser,
+  GTMEventDataset,
+  GTMEventTransformer,
+  GTMPushFn
+} from "./types";
 
 export interface GTMContextProps {
   push: GTMPushFn;
@@ -8,6 +13,7 @@ export interface GTMContextProps {
   mockPushHandler?: GTMPushFn;
   initialised?: boolean;
   transformer?: GTMEventTransformer;
+  elementEventParser?: GTMElementEventParser;
 }
 
 const GTMContext = React.createContext<GTMContextProps>({
