@@ -3,7 +3,7 @@ import React from "react";
 import { useScrollSnapControls } from "@rendr-view/use-scrollsnap-controls";
 
 export default {
-  title: "hooks/ueScrollSnapControls"
+  title: "hooks/useScrollSnapControls"
 };
 
 const Item = ({ index, className }: { index: number; className?: string }) => (
@@ -89,7 +89,9 @@ function Example(props: { itemClassName?: string | string[]; options?: any }) {
   );
 }
 
-export const FullWidth = () => <Example itemClassName="w-full" />;
+export const FullWidth = () => (
+  <Example itemClassName="w-full" options={{ debounceTime: 50 }} />
+);
 
 export const FullWidthInContainer = () => (
   <div className="flex">
