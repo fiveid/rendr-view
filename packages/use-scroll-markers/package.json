@@ -1,0 +1,22 @@
+{
+  "name": "@rendr-view/use-scroll-markers",
+  "version": "0.0.1-alpha.0",
+  "main": "dist/lib/index.js",
+  "typing": "dist/lib/index.d.ts",
+  "module": "dist/lib-esm/index.js",
+  "jsnext:main": "dist/lib-esm/index.js",
+  "license": "MIT",
+  "private": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc && tsc -m es6 --outDir dist/lib-esm && tsc -m amd --outFile dist/_bundles/user-scroll-markers.js"
+  },
+  "dependencies": {
+    "lodash.debounce": "4.0.8"
+  },
+  "devDependencies": {
+    "@types/lodash.debounce": "4.0.7"
+  }
+}

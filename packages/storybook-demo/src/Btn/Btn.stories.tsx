@@ -4,6 +4,11 @@ import { MdOpenInNew } from "react-icons/md";
 import Btn, { HTMLLinkType } from "@rendr-view/btn";
 import { Button } from "../shared/components";
 
+export default {
+  title: "Btn",
+  component: Btn
+};
+
 const CustomLink = ({ onClick, ...props }: HTMLLinkType) => (
   <a
     onClick={e => {
@@ -46,10 +51,10 @@ export const ClassNames = () => (
     icon={MdOpenInNew}
     clx={{
       button:
-        "rounded bg-blue-500 hover:bg-blue-600 border-blue-600 text-white text-lg inline-flex items-center justify-between py-4 px-10 transition duration-1000 group",
+        "rounded bg-blue-500 hover:bg-blue-600 border-blue-600 text-white text-lg inline-flex items-center justify-between py-2 px-6 transition duration-1000 group",
       label:
-        "font-bold uppercase transition duration-700 transform group-hover:-translate-x-4",
-      icon: "ml-6 transition duration-700 transform group-hover:translate-x-4"
+        "font-bold uppercase transition duration-700 transform group-hover:-translate-x-2",
+      icon: "ml-6 transition duration-700 transform group-hover:translate-x-2"
     }}
   >
     Button

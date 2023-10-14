@@ -44,32 +44,13 @@ Unstyled, and with all content, the component looks like this:
 Individual elements can be styled with utility classes, using the `clx` prop:
 
 <Canvas>
-  <Story
-    name="Styled"
-    args={{
-      clx: {
-        card: "relative max-w-sm border border-gray-100 p-4 shadow overflow-hidden",
-        title: "block text-3xl font-bold mb-2",
-        subtitle: "block font-semibold text-orange-600",
-        paragraph: "block my-2 text-sm leading-wide text-gray-500",
-        categories: "text-xs mb-4",
-        category: "inline-block bg-orange-100 px-2 py-1 mr-2 last:mr-0",
-        buttons: "mt-6 mb-2 block",
-        button:
-          "cursor-pointer bg-orange-500 hover:bg-orange-600 border border-orange-600 text-white font-bold py-2 px-4 rounded",
-        imageWrapper: "block aspect-video overflow-hidden mb-4",
-        image: "w-full h-full object-cover object-center"
-      }
-    }}
-  >
-    {Template.bind({})}
-  </Story>
+  <Story story={stories.ClassNames} />
 </Canvas>
 
 ## Props
 
 ```ts
-export interface Props {
+export interface Props<P = any> {
   className?: string;
   title?: string;
   text?: string;
@@ -79,6 +60,7 @@ export interface Props {
   subtitle?: string;
   buttons?: CardButtonProps[];
   clx?: ClassNamesList;
+  custom?: P;
 }
 ```
 
@@ -152,3 +134,7 @@ const customStructure = [
   ])
 ];
 ```
+
+<Canvas>
+  <Story story={stories.CustomGroups} />
+</Canvas>

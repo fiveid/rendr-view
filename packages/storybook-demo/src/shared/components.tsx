@@ -23,6 +23,10 @@ export const Typography = generateTypography({
   },
   Subheading: {
     tagName: "h3",
-    className: "text-xl"
+    className: "text-xl mb-6"
+  },
+  Display: {
+    tagName: "p",
+    className: "text-5xl font-bold tracking-wide uppercase"
   }
 });
