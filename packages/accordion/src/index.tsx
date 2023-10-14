@@ -11,15 +11,17 @@ export type Props = React.DetailedHTMLProps<
     opened?: boolean;
     duration?: string;
     /**
-     * visibleOnLoad: boolean (default: false)
-     * normally, the content is always hidden until the accordion is "opened"
-     * Set visibleOnLoad to true if you want the content to be initially rendered on the page and then hidden after load.
+     * hideOnLoad: boolean
+     * normally, the content will be initially rendered on the page and then hidden
+     * immediately after load. You can disable this to make sure the content is
+     * always hidden until activated
      */
-    visibleOnLoad?: boolean;
+    hideOnLoad?: boolean;
     /**
-     * alwaysRenderChildren: boolean (default: true)
+     * alwaysRenderChildren: boolean
      * if set to true, children will always render whether accordion open or not
      * otherwise, children will only render if the accordion is opened
+     * default: true
      * */
     alwaysRenderChildren?: boolean;
     /**
@@ -29,11 +31,19 @@ export type Props = React.DetailedHTMLProps<
      * calculate the height in a different way
      */
     getInnerContentHeight?: (div: HTMLDivElement) => number | void;
-    /** disableMutationObserver: boolean (default: false)
+    /** disableMutationObserver: boolean
      * by default, we use mutation observer to resize accordion when content changes,
      * if this is not needed, you can disable this
      */
     disableMutationObserver?: boolean;
+    /**
+     * alwaysDebounceAdjustHeight: boolean
+     * this ensures we always debounce adjust height, even when triggered by `opened` changing
+     * by default this is set to true, which is the way it originally was
+     * and so is how it's been used to date
+     * set it to false to disable this behaviour
+     **/
+    alwaysDebounceAdjustHeight?: boolean;
   }>;
 
 const defaultGetInnerContentHeight = (div?: HTMLDivElement) => {
@@ -44,8 +54,9 @@ const defaultGetInnerContentHeight = (div?: HTMLDivElement) => {
 function AccordionBox({
   opened,
   duration = "duration-700",
-  visibleOnLoad,
+  hideOnLoad,
   alwaysRenderChildren = true,
+  alwaysDebounceAdjustHeight = true,
   getInnerContentHeight,
   disableMutationObserver,
   children,
@@ -98,7 +109,11 @@ function AccordionBox({
       });
     }
 
-    adjustHeight();
+    if (alwaysDebounceAdjustHeight) {
+      handleResize();
+    } else {
+      adjustHeight();
+    }
 
     window.addEventListener("resize", handleResize);
 
@@ -110,7 +125,12 @@ function AccordionBox({
         observer.disconnect();
       }
     };
-  }, [opened, getInnerContentHeight, disableMutationObserver]);
+  }, [
+    opened,
+    getInnerContentHeight,
+    disableMutationObserver,
+    alwaysDebounceAdjustHeight
+  ]);
 
   React.useEffect(() => {
     if (alwaysRenderChildren) {
@@ -137,7 +157,7 @@ function AccordionBox({
     overflow: "hidden"
   };
 
-  if (!visibleOnLoad) {
+  if (hideOnLoad) {
     initialStyle.height = "0px";
   }
 

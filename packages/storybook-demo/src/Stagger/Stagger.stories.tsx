@@ -3,6 +3,11 @@ import Stagger from "@rendr-view/stagger";
 import clsx from "clsx";
 import { Button } from "../shared/components";
 
+export default {
+  title: "Stagger",
+  component: Stagger
+};
+
 export const Example = () => {
   const [isActive, setIsActive] = React.useState(false);
   return (
