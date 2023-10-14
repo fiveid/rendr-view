@@ -5,6 +5,11 @@ import Btn, { Props as ButtonProps, HTMLLinkType } from "@rendr-view/btn";
 import { Button } from "../shared/components";
 import { clxn } from "@rendr-view/with-clxn";
 
+export default {
+  title: "Btn",
+  component: Btn
+};
+
 const CustomLink = ({ onClick, ...props }: HTMLLinkType) => (
   <a
     onClick={e => {
