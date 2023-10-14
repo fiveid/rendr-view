@@ -41,48 +41,29 @@ Unstyled, and with all content, the component looks like this:
   <Story name="Default">{Template.bind({})}</Story>
 </Canvas>
 
+## Customising styles
+
 Individual elements can be styled with utility classes, using the `clx` prop:
 
-<Canvas>
-  <Story
-    name="Styled"
-    args={{
-      clx: {
-        card: "relative max-w-sm border border-gray-100 p-4 shadow overflow-hidden",
-        title: "block text-3xl font-bold mb-2",
-        subtitle: "block font-semibold text-orange-600",
-        paragraph: "block my-2 text-sm leading-wide text-gray-500",
-        categories: "text-xs mb-4",
-        category: "inline-block bg-orange-100 px-2 py-1 mr-2 last:mr-0",
-        buttons: "mt-6 mb-2 block",
-        button:
-          "cursor-pointer bg-orange-500 hover:bg-orange-600 border border-orange-600 text-white font-bold py-2 px-4 rounded",
-        imageWrapper: "block aspect-video overflow-hidden mb-4",
-        image: "w-full h-full object-cover object-center"
-      }
-    }}
-  >
-    {Template.bind({})}
-  </Story>
-</Canvas>
-
-## Props
-
 ```ts
-export interface Props {
-  className?: string;
-  title?: string;
-  text?: string;
-  image?: HTMLImageProps;
-  structure?: CardStructureType;
-  categories?: CardCategory[];
-  subtitle?: string;
-  buttons?: CardButtonProps[];
-  clx?: ClassNamesList;
-}
+const baseStyles = {
+  card: "relative max-w-sm border border-slate-300 p-4 shadow-xl overflow-hidden rounded",
+  title: "block text-2xl font-black",
+  subtitle: "block text-sm italic text-slate-500",
+  paragraph: "block text-md leading-wide text-gray-500 my-2",
+  categories: "text-xs flex gap-2 my-2",
+  category: "bg-slate-100 hover:bg-slate-300 rounded p-1",
+  buttons: "flex mt-4",
+  button:
+    "cursor-pointer bg-orange-500 hover:bg-orange-600 border border-orange-600 text-white font-bold py-2 px-4 rounded",
+  imageWrapper: "block aspect-video overflow-hidden border-1 border-slate-300",
+  image: "w-full h-full object-cover object-center"
+};
 ```
 
-## Customising styles
+<Canvas>
+  <Story story={stories.ClassNames} />
+</Canvas>
 
 Utility classes can be applied to every element of the `Card` using the `clx` prop. The following properties are supported:
 
@@ -107,7 +88,7 @@ There are no default styles.
 
 ## Customising content
 
-The `structure` prop accepts an array of React cmponents, each of which are passed the `Card` props. You can mix default sections with completely custom components.
+The `structure` prop accepts an array of React components, each of which are passed the `Card` props. You can mix default sections with completely custom components.
 
 Default sections can be found on the exported variable: `cardSectionsList`.
 
@@ -123,7 +104,7 @@ Here are some simple examples:
 
 ### Modifying default sections
 
-In some cases, the default sections may not be sufficient. For example, you may want your card title to be a `h2` instead of a `span`. Or you may want to use `Next/Image` instead of `img`. While you can create your own custom components, you could also simple extend the default sections:
+In some cases, the default sections may not be sufficient. For example, you may want your card title to be a `h2` instead of a `span`. Or you may want to use `Next/Image` instead of `img`. While you can create your own custom components, you can also extend the default sections:
 
 ```tsx
 const CustomTitle = (props: CardSectionProps) => (
@@ -137,7 +118,7 @@ const CustomImage = (props: CardSectionProps) => (
 );
 ```
 
-`CustomComp` could be a string of a supported HTML tag, or a React component.
+`CustomComp` can be a React component, or a supported HTML tag.
 
 ### Grouping sections
 
@@ -151,4 +132,25 @@ const customStructure = [
     cardSectionsList.paragraph
   ])
 ];
+```
+
+<Canvas>
+  <Story story={stories.CustomGroups} />
+</Canvas>
+
+## Props
+
+```ts
+export interface Props<P = any> {
+  className?: string;
+  title?: string;
+  text?: string;
+  image?: HTMLImageProps;
+  structure?: CardStructureType;
+  categories?: CardCategory[];
+  subtitle?: string;
+  buttons?: CardButtonProps[];
+  clx?: ClassNamesList;
+  custom?: P;
+}
 ```

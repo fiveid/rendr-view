@@ -2,15 +2,19 @@
   "name": "@rendr-view/storybook-demo",
   "version": "0.0.1-alpha.3",
   "dependencies": {
+    "@rendr-view/accordion": "^0.0.1-alpha.0",
     "@rendr-view/btn": "^0.0.1-alpha.3",
     "@rendr-view/card": "^0.0.1-alpha.3",
     "@rendr-view/gtm-context": "^0.0.1-alpha.3",
+    "@rendr-view/parallaxwipe": "^0.0.1-alpha.0",
     "@rendr-view/portal": "^0.0.1-alpha.3",
     "@rendr-view/rendr-block": "^0.0.1-alpha.3",
     "@rendr-view/rendr-router": "^0.0.1-alpha.2",
     "@rendr-view/stagger": "^0.0.1-alpha.3",
     "@rendr-view/text": "^0.0.1-alpha.3",
+    "@rendr-view/use-dynamic-titlebar": "^0.0.1-alpha.0",
     "@rendr-view/use-fill-available": "^0.0.1-alpha.3",
+    "@rendr-view/use-scroll-markers": "^0.0.1-alpha.0",
     "@rendr-view/use-scrollsnap-controls": "^0.0.1-alpha.3",
     "@rendr-view/with-clxn": "^0.0.1-alpha.3",
     "@rendr-view/with-preset": "^0.0.1-alpha.3",
@@ -38,6 +42,9 @@
   "scripts": {
     "storybook": "start-storybook -s ./public",
     "build-storybook": "build-storybook"
+  },
+  "engines": {
+    "node": "16.10.0"
   },
   "private": true
 }
