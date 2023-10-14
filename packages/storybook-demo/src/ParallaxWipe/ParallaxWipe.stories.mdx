@@ -1,0 +1,15 @@
+import { Story, ArgsTable, Canvas } from "@storybook/addon-docs";
+import ParallaxWipe from "@rendr-view/parallaxwipe";
+import * as stories from "./ParallaxWipe.stories.tsx";
+
+<Meta
+  title="ParallaxWipe"
+  component={ParallaxWipe}
+  parameters={{ layout: "fullscreen" }}
+/>
+
+# ParallaxWipe
+
+<Canvas>
+  <Story story={stories.Example} />
+</Canvas>

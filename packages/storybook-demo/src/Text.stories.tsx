@@ -14,16 +14,18 @@ const TypeSet = generateTypography(
     },
     Title: {
       tagName: "h1",
-      className: "text-6xl font-bold mb-12 uppercase tracking-wider"
+      className:
+        "text-4xl lg:text-6xl font-black mb-6 lg:mb-8 uppercase tracking-tight"
     },
-    Heading: { tagName: "h2", className: "text-3xl font-bold mb-6" },
+    Heading: { tagName: "h2", className: "text-3xl font-extrabold mb-6" },
     Subheading: {
       tagName: "h3",
-      className: "text-lg font-bold mb-4 uppercase max-w-md"
+      className:
+        "text-lg font-bold mb-4 uppercase max-w-md border-b border-t py-3 text-slate-500 border-slate-200"
     },
-    Intro: { tagName: "p", className: "text-lg mb-4 max-w-lg" }
+    Intro: { tagName: "p", className: "text-lg mb-4" }
   },
-  "font-serif text-slate-900"
+  "text-slate-900 max-w-xl"
 );
 
 export const BasicText = () => <Text>This is some text</Text>;

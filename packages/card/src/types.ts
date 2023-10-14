@@ -47,7 +47,7 @@ export type CardSectionsDirectory = {
   [key: string]: React.ComponentType<CardSectionProps>;
 };
 
-export interface Props {
+export interface Props<P = any> {
   className?: string;
   title?: string;
   text?: string;
@@ -56,6 +56,7 @@ export interface Props {
   categories?: CardCategory[];
   subtitle?: string;
   buttons?: CardButtonProps[];
+  custom?: P;
 }
 
 export type CardSectionProps<T = any> = PropsWithClxnObject<
