@@ -6,44 +6,22 @@ import * as stories from "./Btn.stories.tsx";
 
 # Btn
 
-The `Btn` component can be used a foundation for button components in your app. It's a minimal component intended to avoid repeatedly adding simple boilerplate code at the start of every project.
+`Btn` is a base button component with a simple structure. It can be used with utility classes to create a variety of custom buttons for your app.
 
-Its main uses:
+It has a few simple features:
 
-- can be used for both links and buttons with same styles
-- can replace standard link and button elements with custom components (for integration with frameworks such as `Next`)
+- if props has a `href`, it will render as an `a` link, otherwise it will render as a `button`
+- `a` link and `button` elements can be replaced with custom components (e.g. to use `Next/Link`)
 - can be styled using utility classes (such as with `tailwind`)
-- supports a range of icons (based on `react-icons` props)
+- supports icons (based on `react-icons` props)
 
 <Canvas>
   <Story story={stories.ExampleButton} />
 </Canvas>
 
-## Props
-
-`Btn` props extends the standard HTML attributes for both `a` and `button` elements.
-
-```ts
-export type ButtonProps = HTMLButtonType &
-  HTMLLinkType &
-  React.DataHTMLAttributes<HTMLButtonElement | HTMLAnchorElement>;
-
-export interface Props extends ButtonProps, React.AriaAttributes {
-  clx?: ClxnObject<ClassNamesList>;
-  icon?: React.ComponentType<IconBaseProps>;
-  buttonComponent?: React.ComponentType<HTMLButtonType> | "button";
-  linkComponent?: React.ComponentType<HTMLLinkType> | "a";
-  iconProps?: IconBaseProps;
-}
-```
-
-## Usage
-
-Here are some usage examples:
-
 ## Dual purpose
 
-Use a single component (with a single style) to render link or button elements depending on the given props. The button will log an event to the `actions` tab, while the link will open this repo in a new tab.
+Use a single component to render link or button elements depending on the given props. The button will log an event to the `actions` tab, while the link will open this repo in a new tab.
 
 <Canvas>
   <Story story={stories.DualPurpose} />
@@ -51,17 +29,19 @@ Use a single component (with a single style) to render link or button elements d
 
 You can swap both the button and link elements for custom components. This may be required when using a frontend framework (such as Next.js, for example), which uses its own `Link` component to handle routing.
 
+In the example below, the custom link component logs the event to the `actions` tab.
+
 <Canvas>
   <Story story={stories.LinkComponent} />
 </Canvas>
 
 ## Icons
 
-Icons are such a standard requirement, support has been added as one of the few features of the component.
+Icon support has been added as one of the few features of the component.
 
 `Btn` will render any icon that supports the `react-icon` props. You can optionally pass a set of icon props to the `Btn` props (to consistently size all icons, for example). Alternatively, you can pass a completely custom component to `icon` and handle the props independently.
 
-You can easily use utility classes to change the order of label -> icon.
+You can use utility classes to change the order of label -> icon.
 
 <Canvas>
   <Story story={stories.Icon} />
@@ -70,8 +50,6 @@ You can easily use utility classes to change the order of label -> icon.
 ## Customising styles
 
 Use the `clx` prop to pass an object of classNames to style different parts of the component. Its designed to be used with utility classes (such as with the Tailwind library), but this is not required.
-
-`Btn` uses `with-clxn` to generate styles, which is part of the same `rendr-view` library.
 
 <Canvas>
   <Story story={stories.ClassNames} />
@@ -92,4 +70,22 @@ export type ClassNamesList = {
   // classNames that are passed to the icon component
   icon?: string;
 };
+```
+
+## Props
+
+`Btn` props extends the standard HTML attributes for both `a` and `button` elements.
+
+```ts
+export type ButtonProps = HTMLButtonType &
+  HTMLLinkType &
+  React.DataHTMLAttributes<HTMLButtonElement | HTMLAnchorElement>;
+
+export interface Props extends ButtonProps, React.AriaAttributes {
+  clx?: ClxnObject<ClassNamesList>;
+  icon?: React.ComponentType<IconBaseProps>;
+  buttonComponent?: React.ComponentType<HTMLButtonType> | "button";
+  linkComponent?: React.ComponentType<HTMLLinkType> | "a";
+  iconProps?: IconBaseProps;
+}
 ```
