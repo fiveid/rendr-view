@@ -6,7 +6,7 @@
   "module": "dist/lib-esm/index.js",
   "jsnext:main": "dist/lib-esm/index.js",
   "license": "MIT",
-  "private": true,
+  "private": false,
   "publishConfig": {
     "access": "public"
   },
