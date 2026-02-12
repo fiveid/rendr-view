@@ -11,7 +11,7 @@ import type {
   CardSectionProps,
   CardSectionsDirectory
 } from "./types";
-import type {
+import {
   CardImage,
   CardCategories,
   CardTitle,
@@ -19,11 +19,11 @@ import type {
   CardParagraph,
   CardButtons
 } from "./card-sections";
-import type {
+import {
   defaultStructure,
-  CardSections,
   renderCardSections,
-  renderCardSectionGroup
+  renderCardSectionGroup,
+  CardSections
 } from "./card-renderer";
 import Card from "./card";
 
@@ -34,6 +34,7 @@ export {
   renderCardSections,
   renderCardSectionGroup,
   Card,
+  CardSections,
   CardImage,
   CardCategories,
   CardTitle,
@@ -52,6 +53,5 @@ export type {
   CardStructureType,
   Props,
   CardSectionProps,
-  CardSectionsDirectory,
-  CardSections
+  CardSectionsDirectory
 };

@@ -1,6 +1,6 @@
 {
   "name": "@rendr-view/gtm-context",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "@types/react-gtm-module": "^2.0.1"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=20.11.0"
   },
   "types": "./dist/index.d.ts",
   "exports": {

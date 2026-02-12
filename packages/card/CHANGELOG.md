@@ -1,5 +1,27 @@
 # @rendr-view/card
 
+## 1.0.3
+
+### Patch Changes
+
+- fix: export CardSections enum as a value instead of just a type
+
+## 1.0.2
+
+### Patch Changes
+
+- Fix workspace dependency publishing issue and update Node engine requirement to >=20.11.0. This release includes a pre-flight verification step to ensure correct publishing.
+- Updated dependencies
+  - @rendr-view/with-clxn@1.0.2
+
+## 1.0.1
+
+### Patch Changes
+
+- Resolve workspace dependency publishing issue and update Node engine requirement to >=20.11.0.
+- Updated dependencies
+  - @rendr-view/with-clxn@1.0.1
+
 ## 1.0.0
 
 ### Major Changes
