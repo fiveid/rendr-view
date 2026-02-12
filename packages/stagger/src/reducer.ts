@@ -31,7 +31,7 @@ export function reducer(state: State, action: Action) {
     case "step": {
       const newSteps = [...state.steps];
       if (typeof action.index !== "undefined") {
-        newSteps[action.index] = action.ready;
+        newSteps[action.index] = action.ready || false;
       }
       return {
         ...state,

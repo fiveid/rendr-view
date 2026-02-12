@@ -18,11 +18,13 @@ const scrollMarkerTransformer = (el: HTMLElement) => ({
 
 const onScroll =
   (
-    container?: HTMLElement | null,
-    title?: HTMLElement | null,
+    containerRef: React.RefObject<HTMLElement | null>,
+    titleRef: React.RefObject<HTMLElement | null>,
     titleBarActiveClassList: string[] = []
   ) =>
   () => {
+    const container = containerRef.current;
+    const title = titleRef.current;
     if (container && title) {
       const scrollTop = container.scrollTop;
       const titleHeight = title.clientHeight;
@@ -52,7 +54,7 @@ export function dynamicTitleBar(
       },
       container,
       scrollMarkerTransformer,
-      onScroll(container, title, titleBarActiveClassList)
+      onScroll({ current: container }, { current: title }, titleBarActiveClassList)
     );
   }
 
@@ -67,12 +69,15 @@ export function useDynamicTitleBar({
   const titleRef = React.useRef<HTMLDivElement>(null);
 
   const { currentScrollPoint } = useScrollMarkers<{ text?: string }>({
-    containerRef,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    containerRef: containerRef as any,
     selectors: selectors(dataAttribute),
     scrollMarkerTransformer,
     onScroll: onScroll(
-      containerRef.current,
-      titleRef.current,
+      // eslint-disable-next-line react-hooks/refs
+      containerRef,
+      // eslint-disable-next-line react-hooks/refs
+      titleRef,
       titleBarActiveClassList
     )
   });

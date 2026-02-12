@@ -20,17 +20,21 @@
     "@rendr-view/with-clxn": "workspace:*",
     "clsx": "^1.1.1"
   },
-  "gitHead": "99d7e4931f812bda056350fe9d317c3baded3fe5",
   "engines": {
     "node": ">=22"
   },
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "require": "./dist/index.js"
     }
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fiveid/rendr-view.git",
+    "directory": "packages/rendr-block"
+  }
 }

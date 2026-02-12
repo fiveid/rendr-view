@@ -1,6 +1,6 @@
-import React from "react";
+
 import CardSectionsList from "./card-sections";
-import { CardSectionProps, CardStructureType } from "./types";
+import type { CardSectionProps, CardStructureType } from "./types";
 
 export const defaultStructure = [
   "image",

@@ -1,4 +1,4 @@
-import { StepObject, StepProp, StepType } from "./types";
+import type { StepObject, StepProp, StepType } from "./types";
 
 export function normaliseStepType(step?: StepType): StepObject {
   switch (typeof step) {
@@ -13,6 +13,7 @@ export function normaliseStepType(step?: StepType): StepObject {
       if (Array.isArray(step)) {
         return {};
       }
+      return step;
     }
     default:
       return step;

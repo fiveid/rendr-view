@@ -1,7 +1,9 @@
-import GTMContext, { GTMContextProps } from "./gtm-context";
-import GTMHandler, { Props } from "./GTMHandler";
-import { gtmPush } from "./gtm-push";
-import { GTMEventDataset, GTMPushFn } from "./types";
+import GTMContext from "./gtm-context";
+import GTMHandler from "./GTMHandler";
+import type { GTMContextProps } from "./gtm-context";
+import type { Props } from "./GTMHandler"
+import type { gtmPush } from "./gtm-push";
+import type { GTMEventDataset, GTMPushFn } from "./types";
 
 export type { GTMContextProps, Props, GTMEventDataset, GTMPushFn };
 export { GTMHandler, gtmPush };

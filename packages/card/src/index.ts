@@ -1,5 +1,5 @@
 import withClxn from "@rendr-view/with-clxn";
-import {
+import type {
   CardCategory,
   ClassNamesList,
   HTMLImageProps,
@@ -11,7 +11,7 @@ import {
   CardSectionProps,
   CardSectionsDirectory
 } from "./types";
-import {
+import type {
   CardImage,
   CardCategories,
   CardTitle,
@@ -19,7 +19,7 @@ import {
   CardParagraph,
   CardButtons
 } from "./card-sections";
-import {
+import type {
   defaultStructure,
   CardSections,
   renderCardSections,

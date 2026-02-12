@@ -1,6 +1,7 @@
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const gtmPush = (gtmEvent: Record<string, any>) => {
-  // eslint-disable-next-line no-console
   let dataLayerLogger = {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any, no-console
     push: (args: Record<string, any>) => console.log(args)
   };
 

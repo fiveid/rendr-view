@@ -5,9 +5,6 @@
   "module": "./dist/index.mjs",
   "license": "MIT",
   "private": true,
-  "publishConfig": {
-    "access": "public"
-  },
   "scripts": {
     "build": "vite build",
     "test": "vitest run",
@@ -25,5 +22,10 @@
       "types": "./dist/index.d.ts"
     }
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fiveid/rendr-view.git",
+    "directory": "packages/_boilerplate"
+  }
 }

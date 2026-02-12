@@ -32,5 +32,5 @@ export function useFillAvailable(options: Options = {}) {
       document.documentElement.dataset.useFillAvailable = "disabled";
       window.removeEventListener("resize", debouncedSetVh);
     };
-  }, []);
+  }, [options?.debounce]);
 }

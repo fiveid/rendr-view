@@ -45,6 +45,7 @@ export function Btn({
   linkComponent = "a",
   ...props
 }: PropsWithClxnObject<Props, ClassNamesList>) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const Wrapper: any = !!props.href ? linkComponent : buttonComponent;
 
   function renderIcon() {
@@ -52,6 +53,7 @@ export function Btn({
       return null;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const IconComponent = icon as any;
     return (
       <IconComponent {...iconProps} className={clsx("Btn__icon", clx?.icon)} />
@@ -74,4 +76,5 @@ export function Btn({
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default withClxn<Omit<Props, "clx">, ClassNamesList>(Btn, {});

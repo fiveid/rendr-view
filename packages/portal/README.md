@@ -1,36 +1,47 @@
 # @rendr-view/portal
 
-A wrapper around React.createPortal.
+A lightweight React portal component for rendering children outside the main DOM hierarchy, typically used for modals, tooltips, and overlays.
 
-## Installation
+## 1. Metadata
 
-```sh
-yarn add @rendr-view/portal
-```
+- **Package Name:** `@rendr-view/portal`
+- **Description:** A simple, reusable React portal container.
+- **Category:** UI Primitive
 
-## Props
+## 2. API Design
+
+### Exports
+
+- `Portal` (Default): The portal component.
+
+### Props
 
 ```ts
-export interface Props {
+interface Props {
   children: React.ReactNode;
-  className?: string;
-  el?: string;
-  id?: string;
+  className?: string; // Class applied to the portal container (Default: "root-portal")
+  el?: string;        // HTML element type for the container (Default: "div")
+  id?: string;        // Optional ID for the portal container
 }
 ```
 
-### children
+## 3. Implementation Details
 
-The content to render inside the portal.
+- **Dependencies:** `react`, `react-dom`
+- **Behavior:** Automatically manages the lifecycle of the portal container element in the `document.body`.
 
-### className
+## 4. Usage Example
 
-Optional className to be given to the portal container element. By default this is `root-portal`.
+```tsx
+import Portal from "@rendr-view/portal";
 
-### el
-
-The HTML element of the portal container. By default this is `div`.
-
-### id
-
-An ID to be given to the portal container. If a portal has an ID, any existing instance of a portal container with the same id will be replaced.
+function MyModal() {
+  return (
+    <Portal className="my-modal-overlay">
+      <div className="modal-content">
+        <h2>I am rendered in a Portal!</h2>
+      </div>
+    </Portal>
+  );
+}
+```

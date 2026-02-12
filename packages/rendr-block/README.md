@@ -1,41 +1,51 @@
 # @rendr-view/rendr-block
 
-A simple block React compononent. Implements the Rendr `blockRenderer` to render Rendr blocks represented in JSON format.
+A specialized container for rendering Rendr block definitions within the `rendr-view` ecosystem.
 
-## Installation
+## 1. Metadata
 
-```sh
-yarn add @rendr-view/rendr-block
-```
+- **Package Name:** `@rendr-view/rendr-block`
+- **Description:** A bridge component for rendering Rendr-compatible content blocks.
+- **Category:** UI Primitive
 
-## Props
+## 2. API Design
 
-The `RendrBlock` extends `React.HTMLAttributes<HTMLDivElement>` with these props:
+### Exports
+
+- `RendrBlock` (Default): The primary block container component.
+
+### Props
+
+The `RendrBlock` props extend standard `section` attributes.
 
 ```ts
-export interface Props {
-  clx?: {
+interface Props {
+  blockRenderer?: BlockRenderer; // Function to render individual blocks
+  blocks?: BlockDefinition[];    // Array of Rendr block definitions
+  clx?: {                        // Style overrides
     block?: string;
     inner?: string;
-  }
-  className?: string;
-  blockRenderer?: BlockRenderer;
-  blocks?: BlockDefinition[];
+  };
 }
 ```
 
-### clx
+## 3. Implementation Details
 
-An optional object of utility classes to be applied to the block elements.
+- **Dependencies:** `@rendr-view/with-clxn`, `clsx`, `@ekino/rendr-template-react` (types), `@ekino/rendr-core` (types)
+- **HOC:** Wrapped with `withClxn` for consistent styling support.
 
-### className
+## 4. Usage Example
 
-An optional className to be applied to the RendrBlock root div.
+```tsx
+import RendrBlock from "@rendr-view/rendr-block";
 
-### blockRenderer
-
-The Rendr `blockRenderer`. This is a function that renders `blocks` as React components. If you are using Rendr, the `blockRenderer` is passed to all root components.
-
-### blocks
-
-A list of Rendr blocks.
+function Page({ pageBlocks, myRenderer }) {
+  return (
+    <RendrBlock 
+      blocks={pageBlocks} 
+      blockRenderer={myRenderer} 
+      clx={{ block: "my-custom-section" }}
+    />
+  );
+}
+```
