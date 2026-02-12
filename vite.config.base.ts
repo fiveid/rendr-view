@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import dts from "vite-plugin-dts";
@@ -13,7 +14,8 @@ export const getBaseViteConfig = (dirname: string) => {
   return defineConfig({
     plugins: [
       react(),
-      dts({
+      // @ts-expect-error handle default export interop
+      (dts.default || dts)({
         cleanVueFileName: true,
         staticImport: true,
         rollupTypes: false,
@@ -41,7 +43,8 @@ export const getBaseViteConfig = (dirname: string) => {
     test: {
       environment: "jsdom",
       globals: true,
-      setupFiles: "./test/setup.ts"
+      passWithNoTests: true,
+      setupFiles: resolve(import.meta.dirname, "test/setup.ts")
     }
   });
 };
