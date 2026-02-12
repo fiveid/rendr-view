@@ -1,6 +1,6 @@
 {
   "name": "@rendr-view/storybook-demo",
-  "version": "0.0.1-alpha.3",
+  "version": "0.0.2",
   "dependencies": {
     "@rendr-view/accordion": "workspace:*",
     "@rendr-view/btn": "workspace:*",

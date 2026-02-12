@@ -15,8 +15,7 @@
     "format": "prettier --write \"packages/**/*.{ts,tsx,md,json}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish",
-    "release:dry-run": "pnpm build && changeset publish --dry-run"
+    "release": "pnpm build && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",
