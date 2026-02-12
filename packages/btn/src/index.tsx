@@ -1,9 +1,9 @@
 import React from "react";
 import clsx from "clsx";
-import { IconBaseProps } from "react-icons";
+import { type IconBaseProps } from "react-icons";
 import withClxn, {
-  PropsWithClxnObject,
-  ClxnObject
+  type PropsWithClxnObject,
+  type ClxnObject
 } from "@rendr-view/with-clxn";
 
 export type HTMLButtonType = React.DetailedHTMLProps<
