@@ -1,6 +1,6 @@
 {
   "name": "@rendr-view/use-dynamic-titlebar",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "license": "MIT",
@@ -18,7 +18,7 @@
     "@rendr-view/use-scroll-markers": "workspace:*"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=20.11.0"
   },
   "types": "./dist/index.d.ts",
   "exports": {

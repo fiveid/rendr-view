@@ -4,7 +4,7 @@
   "type": "module",
   "packageManager": "pnpm@9.0.0",
   "engines": {
-    "node": ">=22"
+    "node": ">=20.11.0"
   },
   "scripts": {
     "clean": "rm -rf node_modules packages/*/node_modules packages/*/dist",
@@ -15,7 +15,8 @@
     "format": "prettier --write \"packages/**/*.{ts,tsx,md,json}\"",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "pnpm build && changeset publish"
+    "verify-release": "python3 scripts/verify_release.py",
+    "release": "pnpm build && pnpm verify-release && pnpm -r publish --access public --no-git-checks"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.0",

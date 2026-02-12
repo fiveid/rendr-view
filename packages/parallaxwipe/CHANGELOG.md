@@ -1,5 +1,21 @@
 # @rendr-view/parallaxwipe
 
+## 1.0.2
+
+### Patch Changes
+
+- Fix workspace dependency publishing issue and update Node engine requirement to >=20.11.0. This release includes a pre-flight verification step to ensure correct publishing.
+- Updated dependencies
+  - @rendr-view/use-scroll-markers@1.0.2
+
+## 1.0.1
+
+### Patch Changes
+
+- Resolve workspace dependency publishing issue and update Node engine requirement to >=20.11.0.
+- Updated dependencies
+  - @rendr-view/use-scroll-markers@1.0.1
+
 ## 1.0.0
 
 ### Major Changes

@@ -1,6 +1,6 @@
 {
   "name": "@rendr-view/parallaxwipe",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "clsx": "2.0.0"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=20.11.0"
   },
   "types": "./dist/index.d.ts",
   "exports": {

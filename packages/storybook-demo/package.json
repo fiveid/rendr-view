@@ -1,6 +1,6 @@
 {
   "name": "@rendr-view/storybook-demo",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "dependencies": {
     "@rendr-view/accordion": "workspace:*",
     "@rendr-view/btn": "workspace:*",
@@ -9,7 +9,6 @@
     "@rendr-view/parallaxwipe": "workspace:*",
     "@rendr-view/portal": "workspace:*",
     "@rendr-view/rendr-block": "workspace:*",
-    "@rendr-view/rendr-router": "workspace:*",
     "@rendr-view/stagger": "workspace:*",
     "@rendr-view/text": "workspace:*",
     "@rendr-view/use-dynamic-titlebar": "workspace:*",
@@ -44,7 +43,7 @@
     "build-storybook": "build-storybook"
   },
   "engines": {
-    "node": ">=22"
+    "node": ">=20.11.0"
   },
   "private": true,
   "license": "MIT",
