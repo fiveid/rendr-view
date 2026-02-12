@@ -30,11 +30,13 @@ export type TypographyDefinition = {
   tagName: SupportedHTMLTags;
   className: string;
 };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type TypographySet<K = any> = Record<
   keyof K,
   React.ComponentType<Props>
 >;
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any, react-refresh/only-export-components
 export function generateTypography<K = any>(
   tags: Record<keyof K, TypographyDefinition>,
   baseClassName?: string

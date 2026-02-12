@@ -1,5 +1,5 @@
-import React from "react";
-import { PropsWithClxnObject } from "@rendr-view/with-clxn";
+import type React from "react";
+import type { PropsWithClxnObject } from "@rendr-view/with-clxn";
 
 export interface CardCategory {
   className?: string;
@@ -47,6 +47,7 @@ export type CardSectionsDirectory = {
   [key: string]: React.ComponentType<CardSectionProps>;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export interface Props<P = any> {
   className?: string;
   title?: string;
@@ -59,6 +60,7 @@ export interface Props<P = any> {
   custom?: P;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type CardSectionProps<T = any> = PropsWithClxnObject<
   Props & {
     CustomComp?: React.ComponentType<T> | string;

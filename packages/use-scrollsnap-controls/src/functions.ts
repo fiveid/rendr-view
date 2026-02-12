@@ -1,4 +1,4 @@
-import { ScrollData, ScrollSnapState } from "./state";
+import type { ScrollData, ScrollSnapState } from "./state";
 
 export function getSlides(slider: Element, slideSelector: string): NodeListOf<HTMLElement> {
   return slider.querySelectorAll(slideSelector);

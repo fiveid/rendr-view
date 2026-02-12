@@ -1,6 +1,7 @@
 import React from "react";
 import debounce from "lodash.debounce";
-import { initialState, ScrollSnapState } from "./state";
+import { initialState} from "./state";
+import type { ScrollSnapState } from "./state";
 import * as ScrollSnapFunctions from "./functions";
 
 export function useScrollSnapControls(
@@ -69,6 +70,7 @@ export function useScrollSnapControls(
       slider.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleScroll);
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function goToSlide(i: number) {
@@ -80,7 +82,7 @@ export function useScrollSnapControls(
     const slides = getSlides(slider, slideSelector);
     const normalisedIndex = normaliseIndex(i, state.slides.range);
     const scrollLeft = getScrollLeftForSlide(slider, slides, normalisedIndex);
-    ScrollSnapFunctions.goToScrollLeft(slider, scrollLeft);
+    ScrollSnapFunctions.goToScrollLeft(slider, scrollLeft || 0);
   }
 
   function shiftToSlide(modifier: number) {

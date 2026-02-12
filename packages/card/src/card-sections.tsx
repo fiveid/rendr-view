@@ -1,6 +1,6 @@
-import React from "react";
+
 import clsx from "clsx";
-import {
+import type {
   CardButtonProps,
   CardCategory,
   CardSectionProps,
@@ -38,7 +38,7 @@ export function CardCategories({
   }
   return (
     <div className={clsx("Card__categories", clx.categories)}>
-      {props.categories.map((category, i) => (
+      {props.categories.map((category) => (
         <CustomComp
           key={category.label}
           className={clsx("Card__category", clx.category)}
@@ -109,10 +109,10 @@ export function CardButtons({
   }
   return (
     <div className={clsx("Card__buttons", clx.buttons)}>
-      {props.buttons!.map(({ className: buttonClassName, ...button }, i) => (
+      {props.buttons!.map(({ className: buttonClassName, ...button }) => (
         <CustomComp
           className={clsx("Card__button", clx.button, buttonClassName)}
-          key={`${i}-${button.id || "card-button"}`}
+          key={button.id || "card-button"}
           {...button}
         />
       ))}
@@ -120,6 +120,7 @@ export function CardButtons({
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const cardSectionsList: CardSectionsDirectory = {
   image: CardImage,
   categories: CardCategories,
@@ -129,4 +130,5 @@ export const cardSectionsList: CardSectionsDirectory = {
   buttons: CardButtons
 };
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default cardSectionsList;

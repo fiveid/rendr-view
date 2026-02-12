@@ -1,8 +1,9 @@
 import React from "react";
 import clsx from "clsx";
-import withClxn, { PropsWithClxnObject } from "@rendr-view/with-clxn";
-import { BlockRenderer } from "@ekino/rendr-template-react";
-import { BlockDefinition } from "@ekino/rendr-core";
+import withClxn from "@rendr-view/with-clxn";
+import type { PropsWithClxnObject } from "@rendr-view/with-clxn";
+import type { BlockRenderer } from "@ekino/rendr-template-react";
+import type { BlockDefinition } from "@ekino/rendr-core";
 
 export interface ClassNamesList {
   block?: string;
@@ -29,6 +30,7 @@ function render(
         {blocks
           .filter(block => block && block.type) // filter blocks to ensure they have a valid type
           .sort((a, b) => a.order - b.order)
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           .map((block: any, i: number) =>
             blockRenderer(block, `${block.type}_${i}`)
           )}
@@ -55,4 +57,5 @@ export function RendrBlock({
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export default withClxn<Omit<Props, "clx">, ClassNamesList>(RendrBlock, {});

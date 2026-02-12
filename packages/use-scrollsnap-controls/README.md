@@ -1,76 +1,58 @@
 # @rendr-view/use-scrollsnap-controls
 
-A React hook that provides methods to control `scroll-snap` carousels.  
+A specialized React hook for controlling native CSS `scroll-snap` carousels with precise slide and view-based navigation.
 
-## Installation
+## 1. Metadata
 
-```sh
-yarn add @rendr-view/use-scrollsnap-controls
+- **Package Name:** `@rendr-view/use-scrollsnap-controls`
+- **Description:** A hook for programmatic control of scroll-snap containers.
+- **Category:** Hook
+
+## 2. API Design
+
+### Exports
+
+- `useScrollSnapControls`: The primary hook.
+
+### Hook API
+
+```ts
+const controls = useScrollSnapControls(ref, options);
 ```
 
-## Example usage
+#### Controls Object
+- `slides`: `{ visible, whollyVisible, count, next(), prev(), goTo(i) }`
+- `views`: `{ visible, whollyVisible, count, next(), prev(), goTo(i) }`
+
+## 3. Implementation Details
+
+- **Dependencies:** `lodash.debounce`, `react`
+- **Features:** Supports both slide-based (individual items) and view-based (paginated groups of items) navigation.
+
+## 4. Usage Example
 
 ```tsx
-function Example(props: { itemClassName?: string | string[]; options?: any }) {
-  const ref = React.useRef(null);
-  const controls = useScrollSnapControls(ref, props.options);
+import { useScrollSnapControls } from "@rendr-view/use-scrollsnap-controls";
+import { useRef } from "react";
+
+function Carousel() {
+  const scrollRef = useRef(null);
+  const { slides } = useScrollSnapControls(scrollRef, { slideSelector: ".item" });
 
   return (
     <div>
-      <div className="flex justify-between py-2">
-        <div className="flex">
-          <span className="block pr-4 font-bold">Slides</span>
-          <span className="block pr-4">
-            Visible: {controls.slides.visible.join(", ")}
-          </span>
-          <span className="block pr-4">
-            Wholly visible: {controls.slides.whollyVisible.join(", ")}
-          </span>
-          <span className="block">Count: {controls.slides.count}</span>
-        </div>
-        <div>
-          <button onClick={controls.slides.prev}>Prev</button>
-          <button className="ml-2" onClick={controls.slides.next}>
-            Next
-          </button>
-        </div>
+      <div className="flex gap-2 mb-4">
+        <button onClick={slides.prev} disabled={slides.visible.includes(0)}>Prev</button>
+        <button onClick={slides.next} disabled={slides.visible.includes(slides.count - 1)}>Next</button>
       </div>
-      <div className="flex justify-between py-2">
-        <div className="flex">
-          <span className="block pr-4 font-bold">Views</span>
-          <span className="block pr-4">
-            Visible: {controls.views.visible.join(", ")}
-          </span>
-          <span className="block pr-4">
-            Wholly visible: {controls.views.whollyVisible.join(", ")}
-          </span>
-          <span className="block">Count: {controls.views.count}</span>
-        </div>
-        <div>
-          <button onClick={controls.views.prev}>Prev</button>
-          <button className="ml-2" onClick={controls.views.next}>
-            Next
-          </button>
-        </div>
-      </div>
-      <div
-        ref={ref}
-        className="carousel relative flex flex-nowrap snap-x snap-mandatory overflow-x-scroll"
+
+      <div 
+        ref={scrollRef} 
+        className="flex overflow-x-auto snap-x snap-mandatory"
       >
-        {items.map(i => (
-          <div
-            key={i}
-            className={clsx(
-              "slide aspect-video bg-gray-100 border flex justify-center items-center font-bold transition duration-1000 flex-shrink-0",
-              {
-                "snap-center": true,
-                "border-green-200": controls.slides.visible.includes(i),
-                "border-green-500": controls.slides.whollyVisible.includes(i)
-              },
-              className
-            )}
-          >
-            Index {i}
+        {[1, 2, 3, 4, 5].map(i => (
+          <div key={i} className="item flex-shrink-0 w-full snap-start">
+            Slide {i}
           </div>
         ))}
       </div>

@@ -1,4 +1,4 @@
-import { GTMEventDataset } from "./types";
+import type { GTMEventDataset } from "./types";
 
 export const gtmDatasetSelector =
   "*:is([data-event-type], [data-event-label], [data-event-category]):not([data-event-disable]";

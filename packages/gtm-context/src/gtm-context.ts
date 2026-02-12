@@ -1,6 +1,6 @@
 import React from "react";
 import { gtmPush } from "./gtm-push";
-import {
+import type {
   GTMElementEventParser,
   GTMEventDataset,
   GTMEventTransformer,

@@ -2,7 +2,7 @@ import React from "react";
 import TagManager from "react-gtm-module";
 import GTMContext from "./gtm-context";
 import { gtmPush } from "./gtm-push";
-import {
+import type {
   GTMElementEventParser,
   GTMEventDataset,
   GTMEventTransformer,
@@ -44,7 +44,7 @@ function GTMHandler(props: Props) {
       TagManager.initialize({ gtmId: props.trackingId });
     }
     setInitialised(true);
-  }, []);
+  }, [props.trackingId]);
 
   function push(gtmEvent: GTMEventDataset) {
     const eventWithDefaults = transformer(
@@ -71,7 +71,7 @@ function GTMHandler(props: Props) {
         // This is in case we have nested GTMHandlers with click capture
         // Only capture the click if this GTMHandler is the first parent
         // of the target element
-        if (!shouldCaptureEvent(eventElement, ref)) {
+        if (!shouldCaptureEvent(eventElement, ref as React.RefObject<HTMLDivElement>)) {
           return;
         }
 

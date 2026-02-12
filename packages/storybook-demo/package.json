@@ -46,5 +46,11 @@
   "engines": {
     "node": ">=22"
   },
-  "private": true
+  "private": true,
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fiveid/rendr-view.git",
+    "directory": "packages/storybook-demo"
+  }
 }

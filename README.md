@@ -1,19 +1,48 @@
 # Rendr View
 
-A collection of React utility components. These were built with the Rendr library in mind, but some will work just as well in standalone React apps.
+A modern, high-performance monorepo for React utility components and hooks. Optimized for performance, consistency, and a seamless developer experience.
 
-## Contributing
+## Tech Stack
 
-Clone the repository, `cd` into the repo directory.
+- **Package Manager:** [pnpm](https://pnpm.io/)
+- **Monorepo Tooling:** [Turborepo](https://turbo.build/)
+- **Build System:** [Vite](https://vitejs.dev/)
+- **Testing:** [Vitest](https://vitest.dev/)
+- **Linting:** [ESLint 9](https://eslint.org/) (Flat Config)
+- **Documentation:** [Storybook](https://storybook.js.org/)
 
-Install dependencies and bootstrap Lerna with the command:
+## Getting Started
 
+### Prerequisites
+
+- **Node.js:** >= 22
+- **pnpm:** Installed globally (`npm install -g pnpm`)
+
+### Installation
+
+```bash
+pnpm install
 ```
-yarn setup
-```
 
-Start Storybook:
+### Development Scripts
 
-```
-yarn storybook
-```
+- **Build everything:** `pnpm build`
+- **Run tests:** `pnpm test`
+- **Linting:** `pnpm lint`
+- **Start Storybook:** `pnpm storybook`
+
+## Project Structure
+
+- `packages/*`: Standardized library packages.
+- `packages/storybook-demo`: Interactive documentation and playground.
+- `packages/_boilerplate`: Template for creating new packages.
+
+## Creating a New Package
+
+1. Copy the `packages/_boilerplate` directory.
+2. Update `package.json` with the new package name and metadata.
+3. Run `pnpm install` to link workspace dependencies.
+
+## License
+
+MIT

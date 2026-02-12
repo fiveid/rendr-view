@@ -1,6 +1,6 @@
 import React from "react";
 import { defaultState, reducer } from "./reducer";
-import { StepId, StepObject, StepProp } from "./types";
+import type { StepId, StepObject, StepProp } from "./types";
 import { normaliseStepProp } from "./utils";
 
 export interface Props {
@@ -10,7 +10,7 @@ export interface Props {
     started: boolean;
     ready: (id: StepId) => boolean;
     unready: (id: StepId) => boolean;
-  }): JSX.Element;
+  }): React.JSX.Element;
 }
 
 function Stagger({ step = 0, start = false, ...props }: Props) {

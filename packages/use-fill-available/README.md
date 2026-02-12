@@ -1,33 +1,61 @@
 # @rendr-view/use-fill-available
 
-A React hook that creates a `--vh` CSS variable that automatically represents 1%  of the _available_ height of the screen (to account for iOS Safari toolbars, for example).
+A React hook that fixes the "100vh" issue on mobile browsers by creating a `--vh` CSS variable that represents 1% of the truly available viewport height.
 
-## Installation
+## 1. Metadata
 
-```sh
-yarn add @rendr-view/use-fill-available
+- **Package Name:** `@rendr-view/use-fill-available`
+- **Description:** A hook to ensure accurate full-height layouts on mobile.
+- **Category:** Hook
+
+## 2. API Design
+
+### Exports
+
+- `useFillAvailable`: The primary hook.
+
+### Hook API
+
+```ts
+useFillAvailable({
+  debounce?: number; // Milliseconds to debounce the resize listener (Default: 200)
+});
 ```
 
-## Example usage
+## 3. Implementation Details
 
-```tsx
+- **Dependencies:** `lodash.debounce`, `react`
+- **Behavior:** Sets a custom CSS property `--vh` on the `document.documentElement`.
+
+## 4. Usage Example
+
+### Tailwind Configuration
+
+```js
 // tailwind.config.js
 module.exports = {
-  ...config,
   theme: {
     extend: {
-      spacing: {
+      height: {
         "fill-available": "calc(var(--vh, 1vh) * 100)"
       }
     }
   }
 }
+```
 
-// _app.tsx
-const App = () => {
+### Component Usage
+
+```tsx
+import { useFillAvailable } from "@rendr-view/use-fill-available";
+
+function App() {
   useFillAvailable();
-  return <div>
-    <div className="h-fill-available">This adapts to the available height of the screen</div>
-  </div>
+
+  return (
+    <div className="h-fill-available bg-primary">
+      This container always fills the available viewport height!
+    </div>
+  );
 }
 ```

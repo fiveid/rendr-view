@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import debounce from "lodash.debounce";
 import React from "react";
 
 export type SelectorsType = string[];
-export type ScrollMarkerTransformerFn<P = {}> = (el: HTMLElement) => P;
+export type ScrollMarkerTransformerFn<P = any> = (el: HTMLElement) => P;
 export type OnScrollFn = (container?: HTMLElement | null) => void;
-export type ScrollPoint<P = {}> = Omit<P, "top"> & { top: number };
+export type ScrollPoint<P = any> = Omit<P, "top"> & { top: number };
 
 export interface Props {
   selectors: SelectorsType;
@@ -22,7 +23,7 @@ export function offsetTop(node?: HTMLElement): number {
   );
 }
 
-export function getScrollPoints<P = {}>(
+export function getScrollPoints<P = any>(
   container: HTMLElement,
   selectors: SelectorsType,
   fn?: ScrollMarkerTransformerFn
@@ -41,7 +42,6 @@ export function getScrollPoints<P = {}>(
           elements.push(e);
         });
       } catch (err) {
-        // eslint-disable-next-line no-console
         console.warn(err);
       }
     }
@@ -128,7 +128,7 @@ export function scrollMarkers(
   };
 }
 
-export function useScrollMarkers<P = {}>({
+export function useScrollMarkers<P = any>({
   selectors,
   scrollMarkerTransformer,
   containerRef,
@@ -150,6 +150,7 @@ export function useScrollMarkers<P = {}>({
       scrollMarkerTransformer,
       onScroll
     );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectors, scrollMarkerTransformer, containerRef, setCurrentScrollPoint]);
 
   return {

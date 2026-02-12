@@ -2,15 +2,21 @@
 
 A base button component that works as either a HTML button or a link depending on the given props.
 
-## Installation
+## 1. Metadata
 
-```sh
-yarn add @rendr-view/btn
-```
+- **Package Name:** `@rendr-view/btn`
+- **Description:** A flexible, accessible button/link component with icon support.
+- **Category:** UI Primitive
 
-## Props
+## 2. API Design
 
-The custom `Btn` props extend the HTML button attributes and HTML anchor link attributes, as well as data and aria attributes.
+### Exports
+
+- `Btn` (Default): The primary button component.
+
+### Props
+
+The custom `Btn` props extend the HTML button attributes and HTML anchor link attributes.
 
 ```ts
 interface Props extends ButtonProps {
@@ -20,33 +26,31 @@ interface Props extends ButtonProps {
   linkComponent?: React.ComponentType<HTMLLinkType> | "a";
   iconProps?: IconBaseProps;
 }
-
 ```
 
-### clx
+#### clx
+A record of classNames to style Btn elements: `button`, `enabled`, `disabled`, `label`, `icon`.
 
-A record of classNames to style Btn elements. The following properties are all optional:
+## 3. Implementation Details
 
-```text
-button?: string;
-enabled?: string;
-disabled?: string;
-label?: string;
-icon?: string;
+- **Dependencies:** `@rendr-view/with-clxn`, `clsx`
+- **Side Effects:** `false`
+
+## 4. Usage Example
+
+```tsx
+import { Btn } from "@rendr-view/btn";
+import { AiOutlineArrowRight } from "react-icons/ai";
+
+function App() {
+  return (
+    <Btn 
+      href="/contact" 
+      icon={AiOutlineArrowRight}
+      clx={{ button: "p-4 bg-primary text-white" }}
+    >
+      Contact Us
+    </Btn>
+  );
+}
 ```
-
-### icon
-
-An icon component to render as part of the Btn. This expects a components matching the props for the `react-icon` library.
-
-### buttonComponent
-
-A React component to render when displaying as a button. By default, this will be the HTML `button` element.
-
-### linkComponent
-
-A React component to render when displaying as a link. By default, this will be the HTML `a` element.
-
-### iconProps
-
-Props to pass to the icon component, if used.

@@ -4,6 +4,7 @@ describe("clxn", () => {
   it("concatenates utility classes of input and defaults", () => {
     const defaults = { container: "bg-black", inner: "text-2xl mt-4" };
 
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     const output = clxn<{}, keyof typeof defaults>(
       { container: "w-full" },
       defaults,

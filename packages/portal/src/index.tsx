@@ -43,7 +43,7 @@ const Portal: React.ComponentType<Props> = ({
         document.body.removeChild(container);
       }
     };
-  }, []);
+  }, [className, el, id]);
 
   if (!container) {
     return null;

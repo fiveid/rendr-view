@@ -1,180 +1,72 @@
 # @rendr-view/gtm-context
 
-React context to help manage GTM events in React apps.
+A powerful React context and handler system for managing Google Tag Manager (GTM) events with support for automatic click capturing and nested default event values.
 
-## Installation
+## 1. Metadata
 
-```sh
-yarn add @rendr-view/gtm-context
-```
+- **Package Name:** `@rendr-view/gtm-context`
+- **Description:** A robust GTM event management system for React.
+- **Category:** Logic / Logic
 
-## Exports
+## 2. API Design
 
-This library exports three utilites.
+### Exports
 
-- **GTMContext** - the React context
-- **GTMHandler** - a component that implements GTMContext.Provider
-- **gtmPush** - a standalone utility function that simply pushes to dataLayer
+- `GTMContext` (Default): The React context.
+- `GTMHandler`: The primary provider component with automatic click capture support.
+- `gtmPush`: Standalone utility for pushing to `dataLayer`.
 
-## Usage
-
-`GTMContext` should sit at the top level of your application. It exposes a `push` function to trigger GTM events.
-
-```jsx
-<div className="app">
-  <GTMHandler event={{ page: "storybook" }}>
-    <GTMContext.Consumer>
-      {({ push }) => (
-        <div>
-          <Button.Primary
-            onClick={() => {
-              push({
-                event: "click",
-                category: "cta",
-                label: "Click me",
-              });
-            }}
-          >
-            Click me
-          </Button.Primary>
-        </div>
-      )}
-    </GTMContext.Consumer>
-  </GTMHandler>
-</div>
-```
-
-## Implementations
-
-### Capture Clicks
-
-You can optionally set the `captureClicks` prop of `GTMHandler` to `true` to avoid having to manually trigger `push` events. This will cause `GTMHandler` to listen to all click events in the application and trigger a push if the clicked element has the expected data attributes.
-
-```jsx
-<div className="app">
-  <GTMHandler captureClicks event={{ page: "storybook" }}>
-    <div>
-      <Button.Primary data-event-type="click" data-event-category="cta" data-event-label="Click me">
-        Click me
-      </Button.Primary>
-    </div>
-  </GTMHandler>
-</div>
-```
-
-Supported data attributes are:
-
-- `data-event-type`
-- `data-event-category`
-- `data-event-label`
-- `data-event-page`
-- `data-event-action`
-- `data-event-context`
-- `data-event-data`
-
-### Default event values
-
-You can pass default event values to `GTMHandler` in the `event` prop. The properties you provide will be used if the target event does not define them itself.
-
-It is possible to nest `GTMHandler` components to supply default event values to specific sections of the app. In such cases, nested GTMHandler's will inherit the default values of parent GTMHandlers.
-
-In the example below, the root GTMHandler has `page: storybook` as a default event property. Clicking the first button will log an event with that value.
-
-The second button is wrapped in its own GTMHandler, which has a default event with `context: content-section`. Clicking the second button will log an event with both `page: storybook` and `context: content-section`, as well as the properties assigned to the button.
-
-If the parent GTMHandler has `mockPushHandler` defined, the child GTMHandler will also inherit this.
-
-```jsx
-<div className="app">
-  <GTMHandler captureClicks event={{ page: "storybook" }}>
-    <div>
-      <Typography.Paragraph>Clicking this button will log a GTM event with `page: "storybook"`</Typography.Paragraph>
-      <Button.Primary data-event-type="click" data-event-category="cta" data-event-label="Click me">
-        Click me
-      </Button.Primary>
-    </div>
-    <div className="mt-12">
-      <Typography.Subheading>Content Section</Typography.Subheading>
-      <GTMHandler captureClicks event={{ context: "content-section" }}>
-        <Typography.Paragraph>Clicking this button will log a GTM event with `page: "storybook"` AND `context: "content-section"`</Typography.Paragraph>
-        <Button.Primary data-event-type="click" data-event-category="cta" data-event-label="Click me">
-          Click me
-        </Button.Primary>
-      </GTMHandler>
-    </div>
-  </GTMHandler>
-</div>
-```
-
-### Disable event in specific instances
-
-You may need to disable GTM on a specific element when it's used in a certain instancce, but for convenience have added the data attributes in a generic way. You can do this using the `data-event-disable` attribute.
-
-```jsx
-<div>
-  <GTMHandler captureClicks event={{ page: "storybook" }}>
-    <div>
-      <Typography.Paragraph>Clicking this button will log a GTM event in the actions tab</Typography.Paragraph>
-      <Button.Primary data-event-type="click" data-event-category="cta" data-event-label="Click me">
-        Click me
-      </Button.Primary>
-    </div>
-    <div className="mt-12">
-      <Typography.Paragraph>Clicking this button will not</Typography.Paragraph>
-      <Button.Primary data-event-type="click" data-event-category="cta" data-event-label="Click me" data-event-disable>
-        Click me
-      </Button.Primary>
-    </div>
-  </GTMHandler>
-</div>
-```
-
-## Props
-
-`GTMHandler` is the recommended way to implement `GTMContext`. This component has the following props:
+### GTMHandler Props
 
 ```ts
 interface Props {
-  containerClassName?: string;
-  trackingId?: string;
-  captureClicks?: boolean;
-  mockPushHandler?: GTMPushFn;
-  children: React.ReactNode;
-  event?: GTMEventDataset;
-  transformer?: GTMEventTransformer;
+  captureClicks?: boolean;      // Automatically track clicks with data attributes
+  event?: GTMEventDataset;      // Default event data for all nested pushes
+  mockPushHandler?: GTMPushFn;  // Custom logger for dev/testing
+  transformer?: GTMEventTransformer; // Modify event data before push
 }
 ```
 
-### containerClassName
+## 3. Implementation Details
 
-An optional className to pass to the root div in `GTMHandler` that wraps all the children.
+- **Nested Defaults:** `GTMHandler` components can be nested; children inherit and merge default event values from parents.
+- **Click Capture:** When `captureClicks` is enabled, any element with `data-event-*` attributes will trigger a GTM push on click.
 
-### trackingId
+## 4. Usage Example
 
-You can optionally use `GTMHandler` to set up GTM by passing a tracking ID to this prop. This uses `react-gtm-module` to initialise GTM.
+### Basic Setup
 
-### captureClicks
+```tsx
+import { GTMHandler } from "@rendr-view/gtm-context";
 
-Set this optional prop to `true` to capture clicks on child elements as described above. If not set to true, you will have to manually call the `GTMContext` `push` function to trigger events.
-
-### mockPushHandler
-
-Replace the default dataLayer.push function with a mock handler of your own (for example, in Storybook you may want to pass `action("gtm")` to this prop).
-
-### event
-
-Default event object (optional). These values will be used unless overridden by the event. Supports the following properties:
-
-```ts
-event?: string;
-page?: string;
-category?: string;
-action?: string;
-label?: string;
-context?: string;
-data?: string;
+function App() {
+  return (
+    <GTMHandler event={{ page: "home" }} captureClicks>
+      <button 
+        data-event-type="click" 
+        data-event-category="cta" 
+        data-event-label="Sign Up"
+      >
+        Register Now
+      </button>
+    </GTMHandler>
+  );
+}
 ```
 
-### transformer
+### Manual Push
 
-Optional function to transform the event object before it's pushed to GTM. The function receives the event data in format shown above and returns any object.
+```tsx
+import { useContext } from "react";
+import GTMContext from "@rendr-view/gtm-context";
+
+function CustomButton() {
+  const { push } = useContext(GTMContext);
+
+  return (
+    <button onClick={() => push({ event: "form_submit", status: "success" })}>
+      Submit
+    </button>
+  );
+}
+```
