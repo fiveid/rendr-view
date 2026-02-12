@@ -1,19 +1,32 @@
 {
   "name": "@rendr-view/use-dynamic-titlebar",
   "version": "0.0.1",
-  "main": "dist/lib/index.js",
-  "typing": "dist/lib/index.d.ts",
-  "module": "dist/lib-esm/index.js",
-  "jsnext:main": "dist/lib-esm/index.js",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "license": "MIT",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "tsc && tsc -m es6 --outDir dist/lib-esm && tsc -m amd --outFile dist/_bundles/use-dynamic-titlebar.js"
+    "build": "vite build",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "clean": "rm -rf dist node_modules"
   },
   "dependencies": {
-    "@rendr-view/use-scroll-markers": "^0.0.1"
-  }
+    "@rendr-view/use-scroll-markers": "workspace:*"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "sideEffects": false
 }

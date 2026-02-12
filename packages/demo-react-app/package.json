@@ -5,13 +5,13 @@
   "dependencies": {
     "@ekino/rendr-core": "^1.0.0-alpha.0",
     "@ekino/rendr-loader": "^1.0.0-alpha.5",
-    "@rendr-view/card": "^0.0.1-alpha.3",
-    "@rendr-view/rendr-block": "^0.0.1-alpha.3",
-    "@rendr-view/rendr-router": "^0.0.1-alpha.2",
-    "@rendr-view/stagger": "^0.0.1-alpha.3",
-    "@rendr-view/text": "^0.0.1-alpha.3",
-    "@rendr-view/use-fill-available": "^0.0.1-alpha.3",
-    "@rendr-view/with-clxn": "^0.0.1-alpha.3",
+    "@rendr-view/card": "workspace:*",
+    "@rendr-view/rendr-block": "workspace:*",
+    "@rendr-view/rendr-router": "workspace:*",
+    "@rendr-view/stagger": "workspace:*",
+    "@rendr-view/text": "workspace:*",
+    "@rendr-view/use-fill-available": "workspace:*",
+    "@rendr-view/with-clxn": "workspace:*",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -58,5 +58,8 @@
     "postcss": "^8.4.13",
     "postcss-import": "^14.1.0",
     "tailwindcss": "^3.0.24"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }

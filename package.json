@@ -1,39 +1,39 @@
 {
-  "name": "root",
+  "name": "rendr-view-monorepo",
   "private": true,
-  "dependencies": {
-    "path-match": "^1.2.4",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0"
-  },
-  "devDependencies": {
-    "@types/jest": "^27.4.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^2.30.0",
-    "@typescript-eslint/parser": "^2.30.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-jest": "^23.8.2",
-    "eslint-plugin-prettier": "^3.1.3",
-    "eslint-plugin-react": "^7.19.0",
-    "jest": "^27.5.1",
-    "lerna": "^3.22.1",
-    "prettier": "2.5.1",
-    "ts-jest": "^27.1.3",
-    "ts-node": "^8.8.2",
-    "typescript": "^4.5.5"
+  "packageManager": "pnpm@9.0.0",
+  "engines": {
+    "node": ">=22"
   },
   "scripts": {
     "clean": "rm -rf node_modules packages/*/node_modules packages/*/dist",
-    "setup": "yarn install && lerna bootstrap && yarn build",
-    "build": "lerna run build",
-    "test": "lerna run --stream --concurrency=1 test",
-    "lint": "eslint .",
-    "format": "prettier --check 'packages/**/*.ts(x)'",
-    "format:fix": "prettier --write 'packages/**/*.ts(x)'",
-    "storybook": "lerna run storybook --scope=@rendr-view/storybook-demo --stream",
-    "storybook:build": "lerna run build-storybook --scope=@rendr-view/storybook-demo --stream",
-    "demo-react-app": "lerna run start --scope=@rendr-view/demo-react-app --stream"
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"packages/**/*.{ts,tsx,md,json}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.0",
+    "@turbo/gen": "^1.12.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^9.0.0",
+    "eslint-config-turbo": "^2.1.0",
+    "prettier": "^3.0.0",
+    "turbo": "^2.1.0",
+    "typescript": "^5.4.0",
+    "vite": "^5.2.0",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^1.4.0"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   }
 }

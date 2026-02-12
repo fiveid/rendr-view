@@ -2,22 +2,22 @@
   "name": "@rendr-view/storybook-demo",
   "version": "0.0.1-alpha.3",
   "dependencies": {
-    "@rendr-view/accordion": "^0.0.1-alpha.0",
-    "@rendr-view/btn": "^0.0.1-alpha.3",
-    "@rendr-view/card": "^0.0.1-alpha.3",
-    "@rendr-view/gtm-context": "^0.0.1-alpha.3",
-    "@rendr-view/parallaxwipe": "^0.0.1-alpha.0",
-    "@rendr-view/portal": "^0.0.1-alpha.3",
-    "@rendr-view/rendr-block": "^0.0.1-alpha.3",
-    "@rendr-view/rendr-router": "^0.0.1-alpha.2",
-    "@rendr-view/stagger": "^0.0.1-alpha.3",
-    "@rendr-view/text": "^0.0.1-alpha.3",
-    "@rendr-view/use-dynamic-titlebar": "^0.0.1-alpha.0",
-    "@rendr-view/use-fill-available": "^0.0.1-alpha.3",
-    "@rendr-view/use-scroll-markers": "^0.0.1-alpha.0",
-    "@rendr-view/use-scrollsnap-controls": "^0.0.1-alpha.3",
-    "@rendr-view/with-clxn": "^0.0.1-alpha.3",
-    "@rendr-view/with-preset": "^0.0.1-alpha.3",
+    "@rendr-view/accordion": "workspace:*",
+    "@rendr-view/btn": "workspace:*",
+    "@rendr-view/card": "workspace:*",
+    "@rendr-view/gtm-context": "workspace:*",
+    "@rendr-view/parallaxwipe": "workspace:*",
+    "@rendr-view/portal": "workspace:*",
+    "@rendr-view/rendr-block": "workspace:*",
+    "@rendr-view/rendr-router": "workspace:*",
+    "@rendr-view/stagger": "workspace:*",
+    "@rendr-view/text": "workspace:*",
+    "@rendr-view/use-dynamic-titlebar": "workspace:*",
+    "@rendr-view/use-fill-available": "workspace:*",
+    "@rendr-view/use-scroll-markers": "workspace:*",
+    "@rendr-view/use-scrollsnap-controls": "workspace:*",
+    "@rendr-view/with-clxn": "workspace:*",
+    "@rendr-view/with-preset": "workspace:*",
     "clsx": "^1.1.1",
     "react-icons": "^4.3.1"
   },
@@ -44,7 +44,7 @@
     "build-storybook": "build-storybook"
   },
   "engines": {
-    "node": "16.10.0"
+    "node": ">=22"
   },
   "private": true
 }
