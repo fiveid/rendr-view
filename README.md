@@ -43,6 +43,10 @@ pnpm install
 2. Update `package.json` with the new package name and metadata.
 3. Run `pnpm install` to link workspace dependencies.
 
+## Documentation
+
+- [Publishing Releases](./docs/releasing.md) - How to release new versions of packages to npm.
+
 ## License
 
 MIT
