@@ -20,7 +20,7 @@ A React component for managing sequential, staggered animations using Tailwind u
 interface Props {
   start?: boolean; // Trigger the animation sequence
   step?: StepProp; // Array of { id, in, out } duration objects
-  children: (state: { started, ready, unready }) => React.JSX.Element;
+  children: (state: { started; ready; unready }) => React.JSX.Element;
 }
 ```
 
@@ -35,8 +35,8 @@ interface Props {
 import Stagger from "@rendr-view/stagger";
 
 return (
-  <Stagger 
-    start={active} 
+  <Stagger
+    start={active}
     step={[
       { id: "header", in: 500 },
       { id: "list", in: 300 }

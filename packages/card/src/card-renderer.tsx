@@ -1,4 +1,3 @@
-
 import CardSectionsList from "./card-sections";
 import type { CardSectionProps, CardStructureType } from "./types";
 

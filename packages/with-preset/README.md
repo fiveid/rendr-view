@@ -21,6 +21,7 @@ const EnhancedComponent = withPreset(BaseComponent, presetLoader, options?);
 ```
 
 #### presetLoader
+
 A function `(preset: string, props: object) => object` that returns modified props based on the active preset.
 
 ## 3. Implementation Details

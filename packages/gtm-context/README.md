@@ -20,9 +20,9 @@ A powerful React context and handler system for managing Google Tag Manager (GTM
 
 ```ts
 interface Props {
-  captureClicks?: boolean;      // Automatically track clicks with data attributes
-  event?: GTMEventDataset;      // Default event data for all nested pushes
-  mockPushHandler?: GTMPushFn;  // Custom logger for dev/testing
+  captureClicks?: boolean; // Automatically track clicks with data attributes
+  event?: GTMEventDataset; // Default event data for all nested pushes
+  mockPushHandler?: GTMPushFn; // Custom logger for dev/testing
   transformer?: GTMEventTransformer; // Modify event data before push
 }
 ```
@@ -42,9 +42,9 @@ import { GTMHandler } from "@rendr-view/gtm-context";
 function App() {
   return (
     <GTMHandler event={{ page: "home" }} captureClicks>
-      <button 
-        data-event-type="click" 
-        data-event-category="cta" 
+      <button
+        data-event-type="click"
+        data-event-category="cta"
         data-event-label="Sign Up"
       >
         Register Now

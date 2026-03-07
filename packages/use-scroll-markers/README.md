@@ -40,7 +40,7 @@ import { useScrollMarkers } from "@rendr-view/use-scroll-markers";
 function ReadingProgress() {
   const { currentScrollPoint } = useScrollMarkers({
     selectors: ["h1", "h2", "h3"],
-    scrollMarkerTransformer: (el) => ({ title: el.textContent })
+    scrollMarkerTransformer: el => ({ title: el.textContent })
   });
 
   return (

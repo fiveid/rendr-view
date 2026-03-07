@@ -71,7 +71,12 @@ function GTMHandler(props: Props) {
         // This is in case we have nested GTMHandlers with click capture
         // Only capture the click if this GTMHandler is the first parent
         // of the target element
-        if (!shouldCaptureEvent(eventElement, ref as React.RefObject<HTMLDivElement>)) {
+        if (
+          !shouldCaptureEvent(
+            eventElement,
+            ref as React.RefObject<HTMLDivElement>
+          )
+        ) {
           return;
         }
 

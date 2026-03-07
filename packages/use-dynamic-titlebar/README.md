@@ -44,10 +44,14 @@ function Page() {
       <header ref={titleRef} className="fixed top-0 w-full h-12 bg-white">
         <span data-title-output>Default Title</span>
       </header>
-      
+
       <main ref={containerRef} className="h-screen overflow-y-auto">
-        <section data-title="Section 1" className="h-screen">Content 1</section>
-        <section data-title="Section 2" className="h-screen">Content 2</section>
+        <section data-title="Section 1" className="h-screen">
+          Content 1
+        </section>
+        <section data-title="Section 2" className="h-screen">
+          Content 2
+        </section>
       </main>
     </div>
   );

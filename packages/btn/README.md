@@ -29,6 +29,7 @@ interface Props extends ButtonProps {
 ```
 
 #### clx
+
 A record of classNames to style Btn elements: `button`, `enabled`, `disabled`, `label`, `icon`.
 
 ## 3. Implementation Details
@@ -44,8 +45,8 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 
 function App() {
   return (
-    <Btn 
-      href="/contact" 
+    <Btn
+      href="/contact"
       icon={AiOutlineArrowRight}
       clx={{ button: "p-4 bg-primary text-white" }}
     >

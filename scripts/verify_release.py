@@ -54,7 +54,7 @@ def main():
     root_dir = Path(__file__).parent.parent
     packages_dir = root_dir / "packages"
     
-    # Skip _boilerplate and storybook-demo if they are not intended for publishing as libraries
+    # Skip _boilerplate and storybook-v10 if they are not intended for publishing as libraries
     # But for now, let's check everything that is NOT private: true
     
     failed = False

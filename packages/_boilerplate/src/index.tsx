@@ -1,4 +1,3 @@
-
 function Component() {
   return <div>Component</div>;
 }

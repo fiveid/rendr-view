@@ -2,7 +2,7 @@ import os
 import json
 
 PACKAGES_DIR = 'packages'
-PRIVATE_PACKAGES = ['demo-react-app', 'storybook-demo', '_boilerplate']
+PRIVATE_PACKAGES = ['demo-react-app', 'storybook-v10', '_boilerplate']
 REPO_URL = 'git+https://github.com/fiveid/rendr-view.git'
 
 def standardize_package_json(path, pkg_dir):

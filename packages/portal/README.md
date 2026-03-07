@@ -20,8 +20,8 @@ A lightweight React portal component for rendering children outside the main DOM
 interface Props {
   children: React.ReactNode;
   className?: string; // Class applied to the portal container (Default: "root-portal")
-  el?: string;        // HTML element type for the container (Default: "div")
-  id?: string;        // Optional ID for the portal container
+  el?: string; // HTML element type for the container (Default: "div")
+  id?: string; // Optional ID for the portal container
 }
 ```
 

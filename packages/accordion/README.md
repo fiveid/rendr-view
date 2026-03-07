@@ -20,9 +20,9 @@ The `AccordionBox` props extend standard `div` attributes.
 
 ```typescript
 interface Props {
-  opened?: boolean;               // Control whether the accordion is open
-  duration?: string;             // CSS duration class (e.g., "duration-700")
-  hideOnLoad?: boolean;          // Immediately hide content on initial layout
+  opened?: boolean; // Control whether the accordion is open
+  duration?: string; // CSS duration class (e.g., "duration-700")
+  hideOnLoad?: boolean; // Immediately hide content on initial layout
   alwaysRenderChildren?: boolean; // Keep children in DOM when closed (default: true)
   disableMutationObserver?: boolean; // Disable automatic resizing on content changes
   getInnerContentHeight?: (div: HTMLDivElement) => number | void; // Custom height calculation
@@ -46,9 +46,7 @@ function MyComponent() {
 
   return (
     <div>
-      <button onClick={() => setIsOpen(!isOpen)}>
-        Toggle Accordion
-      </button>
+      <button onClick={() => setIsOpen(!isOpen)}>Toggle Accordion</button>
       <AccordionBox opened={isOpen} duration="duration-300">
         <div className="p-4 bg-gray-100">
           <p>This is the accordion content.</p>

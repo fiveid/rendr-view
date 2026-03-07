@@ -59,14 +59,12 @@
 
 //   console.log({ i, slideCenterPos, sliderOffsetCenter, diff, nextScrollLeft, scrollWidth: slider.scroll });
 
-
 //   // These are some exceptions I created for three-slides or variable width slides
 
 //   // if (slider.scrollLeft > (slider.scrollWidth - slider.clientWidth)) {
 //   //   // if we're already on the last scrollable point, this might represent a problem. We'll assume the user has reached the end of the carousel and can return to 0
 //   //   return 0;
 //   // }
-
 
 //   // if (nextScrollLeft <= 0 && i !== 0 && slideCenterPos > slider.scrollLeft) {
 //   //   console.log("This does not sound right... Trying to go to 0 without target index being 0 while our target is to the right. Let's move a portion of the width of the target slide");

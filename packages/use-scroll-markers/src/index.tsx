@@ -150,10 +150,36 @@ export function useScrollMarkers<P = any>({
       scrollMarkerTransformer,
       onScroll
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectors, scrollMarkerTransformer, containerRef, setCurrentScrollPoint]);
 
   return {
     currentScrollPoint
   };
+}
+
+// A variation of useScrollMarkers that doesn't re-render on scroll
+export function useScrollMarkersStateless<P = any>({
+  selectors,
+  scrollMarkerTransformer,
+  containerRef,
+  onScroll,
+  callback
+}: Props & {
+  callback: (currentPoint: ScrollPoint<P>) => void;
+}) {
+  React.useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    return scrollMarkers(
+      selectors,
+      callback,
+      containerRef?.current,
+      scrollMarkerTransformer,
+      onScroll
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectors, scrollMarkerTransformer, containerRef, callback]);
 }

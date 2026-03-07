@@ -45,5 +45,5 @@ const Box = withClxn(BaseBox, {
 });
 
 // Override classes for specific instances:
-<Box clx={{ container: "bg-blue-100" }} />
+<Box clx={{ container: "bg-blue-100" }} />;
 ```
