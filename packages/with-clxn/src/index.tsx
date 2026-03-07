@@ -16,9 +16,9 @@ function withClxn<P = any, K = any>(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const Comp = Component as any;
     return (
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       <Comp
         {...(props as P)}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         clx={clxn(clx as ClxnLoader<P, K>, defaults, props as any)}
       />
     );
