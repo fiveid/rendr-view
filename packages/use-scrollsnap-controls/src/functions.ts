@@ -1,16 +1,23 @@
 import type { ScrollData, ScrollSnapState } from "./state";
 
-export function getSlides(slider: Element, slideSelector: string): NodeListOf<HTMLElement> {
+export function getSlides(
+  slider: Element,
+  slideSelector: string
+): NodeListOf<HTMLElement> {
   return slider.querySelectorAll(slideSelector);
 }
 
 export function normaliseIndex(currentIndex: number, range: [number, number]) {
   const [minIndex, maxIndex] = range;
-  return currentIndex < minIndex ? maxIndex : currentIndex > maxIndex ? minIndex : currentIndex;
+  return currentIndex < minIndex
+    ? maxIndex
+    : currentIndex > maxIndex
+      ? minIndex
+      : currentIndex;
 }
 
 export function getElementOffsetCenter(el: Element): number {
-  return el.getBoundingClientRect().left + (el.getBoundingClientRect().width / 2);
+  return el.getBoundingClientRect().left + el.getBoundingClientRect().width / 2;
 }
 
 export function getModifiedIndex(scrollData: ScrollData, modifier: number) {
@@ -30,8 +37,9 @@ export function getModifiedIndex(scrollData: ScrollData, modifier: number) {
     }
     // Else use partially visible items
   } else {
-    const indexes = scrollData.visible
-    const lastScreenIsVisible = indexes[indexes.length - 1] === scrollData.range[1];
+    const indexes = scrollData.visible;
+    const lastScreenIsVisible =
+      indexes[indexes.length - 1] === scrollData.range[1];
     const firstScreenIsVisible = indexes[0] === scrollData.range[0];
 
     // if last screen is visible, but not wholly visible...
@@ -58,7 +66,7 @@ export function getScrollLeftForSlide(
   slides: NodeListOf<HTMLElement>,
   slideIndex: number
 ) {
-  const i = slideIndex
+  const i = slideIndex;
   const nextSlide = slides[i];
 
   if (!nextSlide) {
@@ -78,7 +86,10 @@ export function getScrollLeftForView(slider: HTMLElement, viewIndex: number) {
   return slider.clientWidth * viewIndex;
 }
 
-export function getScrollState(slider: Element, slides: NodeListOf<HTMLElement>): ScrollSnapState {
+export function getScrollState(
+  slider: Element,
+  slides: NodeListOf<HTMLElement>
+): ScrollSnapState {
   const visible: number[] = [];
   const whollyVisible: number[] = [];
 
@@ -91,7 +102,10 @@ export function getScrollState(slider: Element, slides: NodeListOf<HTMLElement>)
     const start = bounds.left;
     const end = start + bounds.width;
 
-    if ((start >= viewStart && start <= viewEnd) || (end < viewEnd && end > viewStart)) {
+    if (
+      (start >= viewStart && start <= viewEnd) ||
+      (end < viewEnd && end > viewStart)
+    ) {
       visible.push(i);
 
       if (start >= viewStart && end <= viewEnd) {
@@ -102,17 +116,16 @@ export function getScrollState(slider: Element, slides: NodeListOf<HTMLElement>)
 
   const viewsCount = slider.scrollWidth / slider.clientWidth;
   const currentView = slider.scrollLeft / slider.clientWidth;
-  const whollyVisibleViews = Number.isInteger(currentView) ? [currentView] : []
+  const whollyVisibleViews = Number.isInteger(currentView) ? [currentView] : [];
 
   // the last view is wholly visible as it is a partial view
   if (whollyVisibleViews.length === 0 && currentView >= viewsCount - 1) {
     whollyVisibleViews.push(Math.ceil(currentView));
   }
 
-  const visibleViews = Number.isInteger(currentView) ? whollyVisibleViews : [
-    Math.floor(currentView),
-    Math.ceil(currentView)
-  ];
+  const visibleViews = Number.isInteger(currentView)
+    ? whollyVisibleViews
+    : [Math.floor(currentView), Math.ceil(currentView)];
 
   return {
     slides: {
@@ -128,8 +141,7 @@ export function getScrollState(slider: Element, slides: NodeListOf<HTMLElement>)
       range: [0, Math.ceil(viewsCount) - 1]
     }
   };
-};
-
+}
 
 export function goToScrollLeft(slider: HTMLElement, scrollLeft: number) {
   if (!slider || typeof scrollLeft === "undefined") {
@@ -139,6 +151,6 @@ export function goToScrollLeft(slider: HTMLElement, scrollLeft: number) {
   slider.scroll({
     top: 0,
     left: scrollLeft,
-    behavior: "smooth",
+    behavior: "smooth"
   });
-};
+}

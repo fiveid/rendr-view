@@ -10,11 +10,10 @@ export interface ClassNamesList {
   inner?: string;
 }
 
-export interface Props
-  extends PropsWithClxnObject<
-    React.HTMLAttributes<HTMLDivElement>,
-    ClassNamesList
-  > {
+export interface Props extends PropsWithClxnObject<
+  React.HTMLAttributes<HTMLDivElement>,
+  ClassNamesList
+> {
   blockRenderer?: BlockRenderer;
   blocks?: BlockDefinition[];
 }

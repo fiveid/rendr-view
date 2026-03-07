@@ -19,10 +19,10 @@ A React component that creates a parallax "wipe" effect by toggling between fixe
 ```ts
 interface Props {
   parallaxMode?: "always" | "in" | "out"; // Scroll trigger mode
-  className?: string;                      // Outer container class
-  innerClassName?: string;                 // Inner overflow container class
-  width?: string;                         // Default: "w-screen"
-  height?: string;                        // Default: "h-screen"
+  className?: string; // Outer container class
+  innerClassName?: string; // Inner overflow container class
+  width?: string; // Default: "w-screen"
+  height?: string; // Default: "h-screen"
 }
 ```
 

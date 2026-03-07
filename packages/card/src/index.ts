@@ -11,7 +11,7 @@ import type {
   CardSectionProps,
   CardSectionsDirectory
 } from "./types";
-import {
+import cardSectionsList, {
   CardImage,
   CardCategories,
   CardTitle,
@@ -33,6 +33,7 @@ export {
   defaultStructure,
   renderCardSections,
   renderCardSectionGroup,
+  cardSectionsList,
   Card,
   CardSections,
   CardImage,

@@ -3,7 +3,9 @@ import clxn from "./clxn";
 import type { ClxnObject, ClxnLoader } from "./types";
 
 type PropsWithClxnObject<P = object, K = object> = P & { clx: ClxnObject<K> };
-type PropsWithClxnLoader<P = object, K = object> = P & { clx?: ClxnLoader<P, K> };
+type PropsWithClxnLoader<P = object, K = object> = P & {
+  clx?: ClxnLoader<P, K>;
+};
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function withClxn<P = any, K = any>(
@@ -15,7 +17,10 @@ function withClxn<P = any, K = any>(
     const Comp = Component as any;
     return (
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      <Comp {...(props as P)} clx={clxn(clx as ClxnLoader<P, K>, defaults, props as any)} />
+      <Comp
+        {...(props as P)}
+        clx={clxn(clx as ClxnLoader<P, K>, defaults, props as any)}
+      />
     );
   };
 }

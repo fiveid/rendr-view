@@ -39,7 +39,7 @@ import { useRef } from "react";
 
 function Modal({ onClose }) {
   const modalRef = useRef(null);
-  
+
   useOutsideAlerter(modalRef, onClose);
 
   return (

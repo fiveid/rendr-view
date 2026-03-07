@@ -21,8 +21,9 @@ The `RendrBlock` props extend standard `section` attributes.
 ```ts
 interface Props {
   blockRenderer?: BlockRenderer; // Function to render individual blocks
-  blocks?: BlockDefinition[];    // Array of Rendr block definitions
-  clx?: {                        // Style overrides
+  blocks?: BlockDefinition[]; // Array of Rendr block definitions
+  clx?: {
+    // Style overrides
     block?: string;
     inner?: string;
   };
@@ -41,9 +42,9 @@ import RendrBlock from "@rendr-view/rendr-block";
 
 function Page({ pageBlocks, myRenderer }) {
   return (
-    <RendrBlock 
-      blocks={pageBlocks} 
-      blockRenderer={myRenderer} 
+    <RendrBlock
+      blocks={pageBlocks}
+      blockRenderer={myRenderer}
       clx={{ block: "my-custom-section" }}
     />
   );

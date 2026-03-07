@@ -1,4 +1,3 @@
-
 import clsx from "clsx";
 import type {
   CardButtonProps,
@@ -38,7 +37,7 @@ export function CardCategories({
   }
   return (
     <div className={clsx("Card__categories", clx.categories)}>
-      {props.categories.map((category) => (
+      {props.categories.map(category => (
         <CustomComp
           key={category.label}
           className={clsx("Card__category", clx.category)}

@@ -1,4 +1,3 @@
-
 import clsx from "clsx";
 import type { PropsWithClxnObject } from "@rendr-view/with-clxn";
 import type { ClassNamesList, Props } from "./types";

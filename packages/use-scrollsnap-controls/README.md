@@ -21,6 +21,7 @@ const controls = useScrollSnapControls(ref, options);
 ```
 
 #### Controls Object
+
 - `slides`: `{ visible, whollyVisible, count, next(), prev(), goTo(i) }`
 - `views`: `{ visible, whollyVisible, count, next(), prev(), goTo(i) }`
 
@@ -37,17 +38,26 @@ import { useRef } from "react";
 
 function Carousel() {
   const scrollRef = useRef(null);
-  const { slides } = useScrollSnapControls(scrollRef, { slideSelector: ".item" });
+  const { slides } = useScrollSnapControls(scrollRef, {
+    slideSelector: ".item"
+  });
 
   return (
     <div>
       <div className="flex gap-2 mb-4">
-        <button onClick={slides.prev} disabled={slides.visible.includes(0)}>Prev</button>
-        <button onClick={slides.next} disabled={slides.visible.includes(slides.count - 1)}>Next</button>
+        <button onClick={slides.prev} disabled={slides.visible.includes(0)}>
+          Prev
+        </button>
+        <button
+          onClick={slides.next}
+          disabled={slides.visible.includes(slides.count - 1)}
+        >
+          Next
+        </button>
       </div>
 
-      <div 
-        ref={scrollRef} 
+      <div
+        ref={scrollRef}
         className="flex overflow-x-auto snap-x snap-mandatory"
       >
         {[1, 2, 3, 4, 5].map(i => (

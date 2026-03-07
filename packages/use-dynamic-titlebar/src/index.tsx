@@ -1,7 +1,8 @@
 import React from "react";
 import {
-  useScrollMarkers,
-  scrollMarkers
+  useScrollMarkersStateless,
+  scrollMarkers,
+  offsetTop
 } from "@rendr-view/use-scroll-markers";
 
 export interface Props {
@@ -13,20 +14,18 @@ const selectors = (dataAttribute: string) => [`[${dataAttribute}]`];
 
 const scrollMarkerTransformer = (el: HTMLElement) => ({
   text: el.textContent || "",
-  top: el.offsetTop
+  top: offsetTop(el)
 });
 
 const onScroll =
   (
-    containerRef: React.RefObject<HTMLElement | null>,
     titleRef: React.RefObject<HTMLElement | null>,
     titleBarActiveClassList: string[] = []
   ) =>
-  () => {
-    const container = containerRef.current;
+  (container?: HTMLElement | null) => {
     const title = titleRef.current;
-    if (container && title) {
-      const scrollTop = container.scrollTop;
+    if (title) {
+      const scrollTop = container ? container.scrollTop : window.scrollY;
       const titleHeight = title.clientHeight;
 
       if (scrollTop > titleHeight) {
@@ -54,7 +53,7 @@ export function dynamicTitleBar(
       },
       container,
       scrollMarkerTransformer,
-      onScroll({ current: container }, { current: title }, titleBarActiveClassList)
+      onScroll({ current: title }, titleBarActiveClassList)
     );
   }
 
@@ -68,33 +67,32 @@ export function useDynamicTitleBar({
   const containerRef = React.useRef<HTMLDivElement>(null);
   const titleRef = React.useRef<HTMLDivElement>(null);
 
-  const { currentScrollPoint } = useScrollMarkers<{ text?: string }>({
+  const memoizedSelectors = React.useMemo(
+    () => selectors(dataAttribute),
+    [dataAttribute]
+  );
+
+  useScrollMarkersStateless<{ text?: string }>({
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     containerRef: containerRef as any,
-    selectors: selectors(dataAttribute),
+    selectors: memoizedSelectors,
     scrollMarkerTransformer,
-    onScroll: onScroll(
-      // eslint-disable-next-line react-hooks/refs
-      containerRef,
-      // eslint-disable-next-line react-hooks/refs
-      titleRef,
-      titleBarActiveClassList
-    )
-  });
+    // eslint-disable-next-line react-hooks/refs
+    onScroll: onScroll(titleRef, titleBarActiveClassList),
+    callback: currentPoint => {
+      const activeTitle = currentPoint?.text || "";
 
-  const activeTitle = currentScrollPoint?.text || "";
+      if (typeof window !== "undefined" && activeTitle) {
+        const titleOutput = titleRef.current?.querySelector(
+          "[data-title-output]"
+        );
 
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      const titleOutput = titleRef.current?.querySelector(
-        "[data-title-output]"
-      );
-
-      if (titleOutput) {
-        titleOutput.textContent = activeTitle;
+        if (titleOutput) {
+          titleOutput.textContent = activeTitle;
+        }
       }
     }
-  }, [activeTitle]);
+  });
 
   return {
     containerRef,

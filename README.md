@@ -34,7 +34,7 @@ pnpm install
 ## Project Structure
 
 - `packages/*`: Standardized library packages.
-- `packages/storybook-demo`: Interactive documentation and playground.
+- `packages/storybook-v10`: Interactive documentation and playground.
 - `packages/_boilerplate`: Template for creating new packages.
 
 ## Creating a New Package
